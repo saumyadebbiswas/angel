@@ -1,0 +1,51 @@
+
+// -------manu css-------------
+
+.manu-header{
+    background: #ff8a65;
+    color: #fff;
+}
+
+.manu-bar{
+    color: #fff;
+}
+.info-btn{
+    font-size: 20px;
+    color: #fff;
+    z-index: 99;
+    display: block;
+    float: right;
+    padding-right: 3%;
+    position: relative;
+    cursor: pointer;
+}
+
+// ---------end manu css-----------
+
+.product-box img{
+    width: 100%;
+}
+
+.product-description p{
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 4px;
+}
+.price{
+    color: #ff8a65;
+}
+
+.edit{
+    background: #ff8a65;
+    width: 100%;
+    text-align: center;
+    border-radius: 5px;
+    margin-top: 100px;
+    line-height: 3;
+}
+.edit a{
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+}

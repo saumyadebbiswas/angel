@@ -1,0 +1,33 @@
+// -------manu css-------------
+
+.manu-header{
+    background: #ff8a65;
+    color: #fff;
+}
+
+.manu-bar{
+    color: #fff;
+}
+.info-btn{
+    font-size: 20px;
+    color: #fff;
+    z-index: 99;
+    display: block;
+    float: right;
+    padding-right: 3%;
+    position: relative;
+    cursor: pointer;
+}
+
+// ---------end manu css-----------
+
+.brand{
+    padding: 0;
+    padding-top: 10px;
+}
+
+.brand img{
+    border: 1px solid #ddd;
+    margin: 10px 21px;
+    width: 89%;
+}

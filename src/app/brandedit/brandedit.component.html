@@ -1,0 +1,55 @@
+<ion-header >
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button class="manu-bar"></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="manu-header">
+      Edit Brand - {{brand.name}}
+    </ion-title>
+    <span class="info-btn"><i class="fa fa-ellipsis-v"></i></span>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row justify-content-center>
+      <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+        <form  [formGroup]="brandEditForm" (ngSubmit)="onSubmit()">
+          <div padding>
+            <ion-label>Name</ion-label>
+            <ion-item class="form-group frm">
+              <ion-input type="text" class="info-frm" id="name" formControlName="name" placeholder="Name"></ion-input>
+            </ion-item>
+          </div>
+
+          <div padding>
+            <ion-label>Detail</ion-label>
+            <ion-item class="form-group frm">
+              <ion-input type="text" class="info-frm" id="detail" formControlName="detail" placeholder="Detail"></ion-input>
+            </ion-item>
+          </div>
+
+          <div padding>
+            <ion-label>Image</ion-label>
+            <input
+              type="file"
+              name="file"
+              id="file"
+              class="fileInput"/>
+              <label for="file">
+                <ion-icon name="images"></ion-icon> Images
+              </label>
+          </div>
+    
+          <div padding>
+            <button size="large" expand="block" class="btn edit-btn">Edit</button>
+          </div>
+          <div padding>
+            <button size="large" expand="block" class="btn cancel-btn" (click)="clickCancel()">Cancel</button>
+          </div>
+        </form>
+        <!--<img src="http://phpstack-304562-945735.cloudwaysapps.com/crm/upload/brand/{{brand.image_name}}" alt="{{brand.name}}" />-->
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

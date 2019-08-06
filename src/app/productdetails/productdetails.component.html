@@ -1,0 +1,34 @@
+<ion-header >
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button class="manu-bar"></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="manu-header">
+      {{product.pro_name}}
+    </ion-title>
+    <span class="info-btn"><i class="fa fa-ellipsis-v"></i></span>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+
+    <div class="row product-box">
+      <img src="http://phpstack-304562-945735.cloudwaysapps.com/crm/upload/product/{{product.pro_image_name}}" alt="{{product.pro_name}}" />
+      
+      <div class="col-12 product-description">
+        <h4>{{product.pro_name}}</h4>
+        <p>{{product.pro_description}} </p>
+        <p>Order Terms</p>
+        <p>Minimum Order Quantity {{product.pro_min_order_box_qty}} Boxes</p>
+        <p class="price">₹{{product.pro_price_per_piece}}/Price | Quantity Per Box: 6 Pieces</p>
+        <div class="edit">
+          <a href="/product/edit/{{product.pro_id}}">
+            Edit
+          </a>
+          <!--<a href="/product/edit/{{product.pro_id}}">Edit Product</a>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

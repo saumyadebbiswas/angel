@@ -1,0 +1,26 @@
+<ion-header >
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button class="manu-bar"></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="manu-header">
+      Categories
+    </ion-title>
+    <span class="info-btn"><i class="fa fa-ellipsis-v"></i></span>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container category-list">
+    <div class="row">
+      <div class="col-6 category" *ngFor="let cat of categories">
+        <img src="http://phpstack-304562-945735.cloudwaysapps.com/crm/upload/category/{{cat.cat_image_name}}" alt="" />
+        <a href="#" class="category-name">{{cat.brand_name}}/{{cat.cat_name}}</a>
+      </div>
+    </div>
+
+    <!--<a href="/add-category">Add New Category</a>-->
+  </div>
+</ion-content>
+    
+  
