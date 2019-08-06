@@ -31,15 +31,31 @@
 
           <div padding>
             <ion-label>Image</ion-label>
+            <button type="button" size="small" expand="block" (click)="getImages()" class="btn edit-btn">Select Image</button>
+          </div>
+
+          <ion-row>
+            <ion-col>
+              <!-- More Pinterest floating gallery style -->
+              <div class="images">
+                <div class="one-image" *ngFor="let img of imageResponse">
+                  <img src="{{img}}" alt="" srcset="">
+                </div>
+              </div>
+            </ion-col>
+          </ion-row>
+
+          <!--<div padding>
+            <ion-label>Image</ion-label>
             <input
               type="file"
               name="file"
               id="file"
               class="fileInput"/>
-              <label for="file">
-                <ion-icon name="images"></ion-icon> Images
-              </label>
-          </div>
+            <label for="file">
+              <ion-icon name="images"></ion-icon> Images
+            </label>
+          </div>-->
     
           <div padding>
             <button size="large" expand="block" class="btn edit-btn">Edit</button>

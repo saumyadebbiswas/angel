@@ -22,6 +22,8 @@ import { EditprofileComponent } from './editprofile/editprofile.component';
 import { ProducteditComponent } from './productedit/productedit.component';
 import { BrandeditComponent } from './brandedit/brandedit.component';
 
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
+
 @NgModule({
   declarations: [
     AppComponent, 
@@ -47,7 +49,8 @@ import { BrandeditComponent } from './brandedit/brandedit.component';
   ],
   providers: [
     StatusBar,
-    SplashScreen,
+    SplashScreen,,
+    ImagePicker,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

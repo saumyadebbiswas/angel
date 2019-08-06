@@ -80,7 +80,7 @@ hr {
     padding: 1rem 0;
 }
 
-// For image file type - start here
+// ---------For image file type - start here----------------
 .fileInput {
     width: 0.1px;
     height: 0.1px;
@@ -98,5 +98,36 @@ hr {
     border: 1px solid #ccc;
     cursor: pointer;
 }
-// End here
+// ---------------End here------------------------
+
+// ------------Image picker images - start here ----------------
+
+.image-container {
+    min-height: 200px;
+    background-size: cover;
+  }
+   
+  @media (min-width: 0px) {
+    .images {
+      column-count: 2;
+    }
+  }
+   
+  @media (min-width: 420px) {
+    .images {
+      column-count: 3;
+    }
+  }
+   
+  @media (min-width: 720px) {
+    .images {
+      column-count: 4;
+    }
+  }
+   
+  .one-image {
+    margin: 2px;
+  }
+
+  //---------- End here -----------------
 
