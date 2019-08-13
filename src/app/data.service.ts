@@ -29,8 +29,24 @@ export class DataService {
     return this.http.put<any>('http://phpstack-304562-945735.cloudwaysapps.com/crm/api/brand/edit', input, {headers: this.requestHeader})
   }
 
+  brandAdd(input:any): Observable<any> {
+    return this.http.post<any>('http://phpstack-304562-945735.cloudwaysapps.com/crm/api/brand/insert', input, {headers: this.requestHeader})
+  }
+
   categoryList(): Observable<any> {
     return this.http.get<any>('http://phpstack-304562-945735.cloudwaysapps.com/crm/api/category/details', {headers: this.requestHeader})
+  }
+
+  categoryDetails(input:any): Observable<any> {
+    return this.http.get<any>('http://phpstack-304562-945735.cloudwaysapps.com/crm/api/category/details/'+input.category_id, {headers: this.requestHeader})
+  }
+
+  categoryEdit(input:any): Observable<any> {
+    return this.http.put<any>('http://phpstack-304562-945735.cloudwaysapps.com/crm/api/category/edit', input, {headers: this.requestHeader})
+  }
+
+  categoryAdd(input:any): Observable<any> {
+    return this.http.post<any>('http://phpstack-304562-945735.cloudwaysapps.com/crm/api/category/insert', input, {headers: this.requestHeader})
   }
 
   productList(): Observable<any> {
@@ -45,7 +61,27 @@ export class DataService {
     return this.http.put<any>('http://phpstack-304562-945735.cloudwaysapps.com/crm/api/product/edit', input, {headers: this.requestHeader})
   }
 
+  productAdd(input:any): Observable<any> {
+    return this.http.post<any>('http://phpstack-304562-945735.cloudwaysapps.com/crm/api/product/insert', input, {headers: this.requestHeader})
+  }
+
   colorList(): Observable<any> {
     return this.http.get<any>('http://phpstack-304562-945735.cloudwaysapps.com/crm/api/color/details', {headers: this.requestHeader})
+  }
+
+  staffList(): Observable<any> {
+    return this.http.get<any>('http://phpstack-304562-945735.cloudwaysapps.com/crm/api/authentication/allstaffs', {headers: this.requestHeader})
+  }
+
+  staffDetails(input:any): Observable<any> {
+    return this.http.get<any>('http://phpstack-304562-945735.cloudwaysapps.com/crm/api/authentication/staff/'+input.staff_id, {headers: this.requestHeader})
+  }
+
+  staffEdit(input:any): Observable<any> {
+    return this.http.put<any>('http://phpstack-304562-945735.cloudwaysapps.com/crm/api/authentication/staff-edit', input, {headers: this.requestHeader})
+  }
+
+  staffAdd(input:any): Observable<any> {
+    return this.http.post<any>('http://phpstack-304562-945735.cloudwaysapps.com/crm/api/authentication/staff-insert', input, {headers: this.requestHeader})
   }
 }

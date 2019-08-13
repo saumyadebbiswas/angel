@@ -1,3 +1,46 @@
-<p>
-  addbrand works!
-</p>
+<ion-header >
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button class="manu-bar"></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="manu-header">
+      Add Brand
+    </ion-title>
+    <span class="info-btn"><i class="fa fa-ellipsis-v"></i></span>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row justify-content-center>
+      <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+        <form  [formGroup]="brandAddForm" (ngSubmit)="onSubmit()">
+          <div padding>
+            <ion-item class="form-group frm">
+              <ion-input type="text" class="info-frm" id="name" formControlName="name" placeholder="Name"></ion-input>
+            </ion-item>
+          </div>
+
+          <div padding>
+            <ion-item class="form-group frm">
+              <ion-textarea class="info-frm" id="detail" formControlName="detail" placeholder="Detail"></ion-textarea>
+            </ion-item>
+          </div>
+
+          <div padding>
+            <button type="button" size="small" expand="block" (click)="getImages()" class="btn edit-btn">Select Brand Thumbnail</button>
+          </div>
+    
+          <div padding>
+            <button type="submit" size="large" expand="block" class="btn edit-btn">Publish Brand</button>
+          </div>
+          
+          <div padding>
+            <button type="button" size="large" expand="block" class="btn cancel-btn" (click)="clickCancel()">Cancel</button>
+          </div>
+        </form>
+        
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

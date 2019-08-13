@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { DataService } from 'src/app/data.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NavController, Platform, AlertController } from '@ionic/angular';
+import { empty } from 'rxjs';
+import { Events } from '@ionic/angular';
 
 @Component({
   selector: 'app-signin',
@@ -12,12 +14,22 @@ import { NavController, Platform, AlertController } from '@ionic/angular';
 })
 
 export class SigninComponent implements OnInit {
+
   signinForm: FormGroup;
   email: String;
   password: String;
   requestHeader: any = new HttpHeaders();
 
-  constructor(private router: Router, private data: DataService, public alertCtrl: AlertController) { 
+  constructor(
+    private router: Router, 
+    private data: DataService,
+    public alertCtrl: AlertController,
+    public events: Events
+  ) { 
+    if(localStorage.getItem("sess_staff_name") !== null && localStorage.getItem("sess_staff_name") !== "") {
+      this.router.navigate(['/dashboard']);
+    }
+    
     //this.requestHeader.append("Accept", 'application/json');
     this.requestHeader.append('Content-Type', 'application/json'); 
   }
@@ -26,7 +38,7 @@ export class SigninComponent implements OnInit {
     this.signinForm = new FormGroup({
       email: new FormControl(),
       password: new FormControl()
-    })
+    });
   }
 
   async onSubmit() {
@@ -42,8 +54,15 @@ export class SigninComponent implements OnInit {
 
       this.data.login(sendData).subscribe(
         async res => {  
-          if(res.status == true) {         
+          if(res.status == true) {       
             console.log(res);
+
+            localStorage.setItem("sess_staff_id", res.data.id);
+            localStorage.setItem("sess_staff_name", res.data.first_name+' '+res.data.last_name);
+            localStorage.setItem("sess_staff_phone", res.data.phone);
+            localStorage.setItem("sess_staff_role", res.data.role);
+
+            this.events.publish('userLogin', JSON.stringify({loggedin: true}));
             //this.token = res.token;
             // console.log(this.token);
             //localStorage.setItem('token', this.token)
@@ -53,11 +72,11 @@ export class SigninComponent implements OnInit {
           } else {
             //alert(res.message);
             const alert = await this.alertCtrl.create({
-             header: 'Error!',
-             message: res.message,
-             buttons: ['OK']
-             });
-             alert.present();
+              header: 'Error!',
+              message: res.message,
+              buttons: ['OK']
+              });
+            alert.present();
           }          
       });
     } else {

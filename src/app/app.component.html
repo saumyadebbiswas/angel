@@ -13,8 +13,8 @@
       <ion-content>
         <div class="user-details">
           <img src="../../assets/images/user.png" alt="" />
-          <h4>Pravin K. Pandey</h4>
-          <p>Kolkata</p>
+          <h4>{{sess_staff_name}}</h4>
+          <p>{{sess_staff_phone}}</p>
 
           <ul class="manu-link">
             <!--<li>
@@ -31,7 +31,7 @@
             <li>Contact Us</li>
             <li></li>
             <li></li>
-            <li>Sign Out</li>
+            <li (click)="signOut()">Sign Out</li>
           </ul>
         </div>
       </ion-content>

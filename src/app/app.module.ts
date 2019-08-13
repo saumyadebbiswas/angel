@@ -7,6 +7,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import { TagInputModule } from 'ngx-chips';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -21,8 +24,10 @@ import { ProductdetailsComponent } from './productdetails/productdetails.compone
 import { EditprofileComponent } from './editprofile/editprofile.component';
 import { ProducteditComponent } from './productedit/productedit.component';
 import { BrandeditComponent } from './brandedit/brandedit.component';
-
-import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import { CategoryeditComponent } from './categoryedit/categoryedit.component';
+import { StaffsComponent } from './staffs/staffs.component';
+import { StaffeditComponent } from './staffedit/staffedit.component';
+import { AddstaffComponent } from './addstaff/addstaff.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +42,11 @@ import { ImagePicker } from '@ionic-native/image-picker/ngx';
     ProductdetailsComponent,
     ProducteditComponent,
     EditprofileComponent,
-    BrandeditComponent
+    BrandeditComponent,
+    CategoryeditComponent,
+    StaffsComponent,
+    StaffeditComponent,
+    AddstaffComponent
   ],
   entryComponents: [],
   imports: [
@@ -45,7 +54,9 @@ import { ImagePicker } from '@ionic-native/image-picker/ngx';
     IonicModule.forRoot(),
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    TagInputModule,
+    BrowserAnimationsModule
   ],
   providers: [
     StatusBar,

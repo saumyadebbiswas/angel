@@ -7,14 +7,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
+  sess_staff_role: String;
 
-  constructor(private router: Router) { }
-
-  ngOnInit() {
+  constructor(private router: Router) { 
+    this.sess_staff_role = localStorage.getItem("sess_staff_role");
   }
 
-  loadBrands(): void {
-    this.router.navigate(['/brands']); 
+  ngOnInit() {
   }
 
 }

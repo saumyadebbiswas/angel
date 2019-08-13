@@ -1,20 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { DataService } from '../data.service';
 import { AlertController } from '@ionic/angular';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 
 @Component({
-  selector: 'app-addcategory',
-  templateUrl: './addcategory.component.html',
-  styleUrls: ['./addcategory.component.scss'],
+  selector: 'app-categoryedit',
+  templateUrl: './categoryedit.component.html',
+  styleUrls: ['./categoryedit.component.scss'],
 })
-export class AddcategoryComponent implements OnInit {
+export class CategoryeditComponent implements OnInit {
 
+  category_id: string;
+
+  category:any = [];
   brand:any = [];
+
+  set_brand_id:String;
   
-  categoryAddForm: FormGroup;
+  categoryEditForm: FormGroup;
   brand_id:string;
   name: String;
   detail: String;
@@ -22,26 +27,26 @@ export class AddcategoryComponent implements OnInit {
 
   imageResponse:any = [];
 
+
   constructor(
     private router: Router, 
+    private route:ActivatedRoute,
     private data:DataService,
     public alertCtrl: AlertController,
     private imagePicker: ImagePicker
-    ) { }
+  ) { }
 
   ngOnInit() {
-    this.categoryAddForm = new FormGroup({
+    this.categoryEditForm = new FormGroup({
       brand_id: new FormControl(),
       name: new FormControl(),
       detail: new FormControl()
     });
 
-    this.showBrand();
+    this.category_id = this.route.snapshot.paramMap.get('id');
 
-    this.categoryAddForm.patchValue({
-      name:"",
-      detail:""
-    });
+    this.showCategories();
+    this.showBrand();
   }
 
   clickCancel() {
@@ -66,27 +71,29 @@ export class AddcategoryComponent implements OnInit {
   }
 
   onSubmit() {
-    this.brand_id = this.categoryAddForm.get('brand_id').value;
-    this.name = this.categoryAddForm.get('name').value.trim();
-    this.detail = this.categoryAddForm.get('detail').value.trim();
+    this.brand_id = this.categoryEditForm.get('brand_id').value;
+    this.name = this.categoryEditForm.get('name').value;
+    this.detail = this.categoryEditForm.get('detail').value;
 
     if(this.imageResponse[0]==null){
       this.imageResponse[0] = "";
     }
 
     let sendData = {
+      id: this.category_id,
       brand_id: this.brand_id,
-      name: this.name,
-      description: this.detail,
+      name: this.name.trim(),
+      description: this.detail.trim(),
+      image_name: this.image_name,
       imagefile: this.imageResponse[0]
     }
 
-    if(this.brand_id == null || this.name == "" || this.detail == "" || 
-    this.imageResponse[0] == ""){
+    if(this.category_id == "" || this.category_id == null || this.brand_id == "" 
+    || this.name.trim() == "" || this.detail.trim() == ""){
       alert('Enter full credentials!');
     } else {
       console.log(sendData);
-      this.data.categoryAdd(sendData).subscribe(
+      this.data.categoryEdit(sendData).subscribe(
         async res => {  
           if(res.status == true) {
             console.log(res);
@@ -103,11 +110,39 @@ export class AddcategoryComponent implements OnInit {
     }
   }
 
+  showCategories() {
+    let sendData = {
+      category_id: this.category_id
+    }
+
+    this.data.categoryDetails(sendData).subscribe(
+      res => {
+        if(res.status == true) {
+          this.category = res.data;
+          this.set_brand_id = res.data.cat_brand_id;
+          this.image_name = res.data.cat_image_name;
+
+          this.categoryEditForm.patchValue({
+            name:res.data.cat_name,
+            detail:res.data.cat_description
+          });
+
+          console.log(this.category);
+        } else {
+          this.category = res.message;
+          console.log("No response");
+        }
+      });
+  }
+
   showBrand() {
     this.data.brandList().subscribe(
       res => {
         if(res.status == true) {
           this.brand = res.data;
+          this.categoryEditForm.patchValue({
+            brand_id:this.set_brand_id
+          });
           console.log(this.brand);
         } else {
           this.brand = res.message;

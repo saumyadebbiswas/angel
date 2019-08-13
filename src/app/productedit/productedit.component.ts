@@ -3,6 +3,7 @@ import { DataService } from '../data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
 
 @Component({
   selector: 'app-productedit',
@@ -15,13 +16,14 @@ export class ProducteditComponent implements OnInit {
   product:any = [];
   brand:any = [];
   category:any = [];
-  color:any = [];
+  //color:any = [];
 
   set_brand_id:String;
   set_category_id:String;
-  set_color_list: any;
+  //set_color_list: any;
   
   productEditForm: FormGroup;
+  name:String;
   design_num: String;
   detail: String;
   brand_id: String;
@@ -30,23 +32,25 @@ export class ProducteditComponent implements OnInit {
   qty_per_box: String;
   min_order: String;
   color_list: any;
+  image_name: String;
+
+  new_category:any = [];
+
+  imageResponse:any = [];
 
   constructor(
     private router: Router, 
     private route:ActivatedRoute, 
     private data:DataService,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    private imagePicker: ImagePicker
   ) { }
 
   ngOnInit() {
     this.product_id = this.route.snapshot.paramMap.get('id');
-    //console.log(this.product_id);
-    this.showProduct();
-    this.showBrand();
-    this.showCategory();
-    this.showColors();
 
     this.productEditForm = new FormGroup({
+      name: new FormControl(),
       design_num: new FormControl(),
       detail: new FormControl(),
       brand_id: new FormControl(),
@@ -55,7 +59,12 @@ export class ProducteditComponent implements OnInit {
       qty_per_box: new FormControl(),
       min_order: new FormControl(),
       color_list: new FormControl()
-    })
+    });
+    
+    this.showProduct();
+    this.showBrand();
+    this.showCategory();
+    //this.showColors();
   }
 
   clickCancel(): void {
@@ -63,32 +72,45 @@ export class ProducteditComponent implements OnInit {
   }
   
   onSubmit() {
-    this.design_num = this.productEditForm.get('design_num').value;
-    this.detail = this.productEditForm.get('detail').value;
+    this.name = this.productEditForm.get('name').value.trim();
+    this.design_num = this.productEditForm.get('design_num').value.trim();
+    this.detail = this.productEditForm.get('detail').value.trim();
     this.brand_id = this.productEditForm.get('brand_id').value;
     this.category_id = this.productEditForm.get('category_id').value;
-    this.price = this.productEditForm.get('price').value;
-    this.qty_per_box = this.productEditForm.get('qty_per_box').value;
-    this.min_order = this.productEditForm.get('min_order').value;
+    this.price = this.productEditForm.get('price').value.trim();
+    this.qty_per_box = this.productEditForm.get('qty_per_box').value.trim();
+    this.min_order = this.productEditForm.get('min_order').value.trim();
     this.color_list = this.productEditForm.get('color_list').value;
 
-    let sendData = {
-      id: this.product_id,
-      design_number: this.design_num,
-      description: this.detail,
-      brand_id: this.brand_id,
-      category_id: this.category_id,
-      price_per_piece: this.price,
-      quantity_per_box: this.qty_per_box,
-      min_order_box_quantity: this.min_order,
-      number_of_color: this.color_list
+    if(this.imageResponse[0]==null){
+      this.imageResponse[0] = "";
     }
 
-    //if(this.design_num == null || this.detail == null || this.brand_id == null 
-    //  || this.category_id == null || this.price == null || this.qty_per_box == null 
-    //  || this.min_order == null) {
-    //  alert('Enter full credentials!');
-    //} else {
+    if(this.product_id == null || this.product_id == "" || this.name == "" || 
+    this.design_num == "" || this.detail == "" || this.brand_id == null || 
+    this.category_id == null || this.price == "" || this.qty_per_box == "" || 
+    this.min_order == "" || this.color_list == "" || this.color_list == null) {
+      alert('Enter full credentials!');
+    } else {
+      console.log('color_list before........', this.color_list);
+      this.color_list = this.tagArrayToString(this.color_list);
+
+      console.log('color_list after........', this.color_list);
+
+      let sendData = {
+        id: this.product_id,
+        name: this.name,
+        design_number: this.design_num,
+        description: this.detail,
+        brand_id: this.brand_id,
+        category_id: this.category_id,
+        price_per_piece: this.price,
+        quantity_per_box: this.qty_per_box,
+        min_order_box_quantity: this.min_order,
+        number_of_color: this.color_list,
+        image_name: this.image_name,
+        imagefile: this.imageResponse[0]
+      }
 
       console.log(sendData);
       this.data.productEdit(sendData).subscribe(
@@ -105,7 +127,17 @@ export class ProducteditComponent implements OnInit {
               alert.present();
           }          
       });
-    //}
+    }
+  }
+
+  tagArrayToString(tagArray: string[]): string {
+    if (Array.isArray(tagArray) && tagArray.length > 0) {
+      const tags = tagArray.map((e: any) => `${e.value}`);
+      const tagString = tags.join();
+      return tagString;
+    } else {
+      return '';
+    }
   }
 
   showProduct() {
@@ -118,22 +150,33 @@ export class ProducteditComponent implements OnInit {
         if(res.status == true) {
           this.product = res.data;
 
+          let num_of_color = res.data.pro_num_of_color.split(',');
+          let newarray = [];
+          for(let i=0; i<num_of_color.length; i++){
+            newarray[i] = {display: num_of_color[i], value: num_of_color[i]};
+          }
+          
+          //console.log('Colors....', newarray);
+
           this.productEditForm.patchValue({
+            name:res.data.pro_name,
             design_num:res.data.pro_design_num,
             detail:res.data.pro_description,
             price:res.data.pro_price_per_piece,
             qty_per_box:res.data.pro_qty_per_box,
-            min_order:res.data.pro_min_order_box_qty
+            min_order:res.data.pro_min_order_box_qty,
+            color_list:newarray
           });
 
           this.set_brand_id = res.data.pro_brand_id;
           this.set_category_id = res.data.pro_cat_id;
-          this.set_color_list = res.data.pro_num_of_color.split(',');
+          //this.set_color_list = res.data.pro_num_of_color.split(',');
+          this.image_name = res.data.pro_image_name;
 
-          console.log(this.product);
+          //console.log(this.product);
         } else {
           this.product = res.message;
-          console.log("No response");
+          //console.log("No response");
         }
       });
   }
@@ -146,10 +189,10 @@ export class ProducteditComponent implements OnInit {
           this.productEditForm.patchValue({
             brand_id:this.set_brand_id
           });
-          console.log(this.brand);
+          //console.log(this.brand);
         } else {
           this.brand = res.message;
-          console.log("No response");
+          //console.log("No response");
         }
       });
   }
@@ -159,18 +202,19 @@ export class ProducteditComponent implements OnInit {
       res => {
         if(res.status == true) {
           this.category = res.data;
+          this.new_category = res.data;
           this.productEditForm.patchValue({
             category_id:this.set_category_id
           });
-          console.log(this.category);
+          //console.log(this.category);
         } else {
           this.category = res.message;
-          console.log("No response");
+          //console.log("No response");
         }
       });
   }
 
-  showColors() {
+  /*showColors() {
     this.data.colorList().subscribe(
       res => {
         if(res.status == true) {
@@ -184,5 +228,48 @@ export class ProducteditComponent implements OnInit {
           console.log("No response");
         }
       });
+  }*/
+
+  onChange($event) {
+    console.log('on change called', $event.target.value);
+    console.log('all cat list/................', this.category);
+    
+    
+    let brand_id = $event.target.value;
+    this.new_category = [];
+    
+    // let j = 0;
+    // for(let i=0; i<this.category.length; i++){
+    //   if(this.category[i].cat_brand_id == brand_id){
+    //     this.new_category[j] = this.category[i];
+    //     j++;
+    //   }
+    // }
+
+    this.category.forEach(elem => {
+      if(elem.cat_brand_id == $event.target.value){
+        this.new_category.push(elem);
+      }
+    });
+  
+    console.log(this.new_category);
   }
+
+  getImages() {
+    let options = {
+      maximumImagesCount: 1,
+      width: 200,
+      quality: 25,
+      outputType: 1
+    };
+    this.imageResponse = [];
+    this.imagePicker.getPictures(options).then((results) => {
+      for (var i = 0; i < results.length; i++) {
+        this.imageResponse.push('data:image/jpeg;base64,' + results[i]);
+      }
+    }, (err) => {
+      alert(err);
+    });
+  }
+
 }

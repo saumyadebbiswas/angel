@@ -19,11 +19,10 @@
       </div>
 
       <div class="col-6 product-description">
-        <h4>Design Id: {{product.pro_design_num}}</h4>
-        <p>Name: {{product.pro_name}}</p>
-        <p>Description: {{product.pro_description | slice:0:30}}...</p>
-        <p>Price: {{product.pro_price_per_piece}}</p>
-        <p>{{product.pro_qty_per_box}}pis/box</p>
+        <h4>Design ID: {{product.pro_design_num}}</h4>
+        <p>{{product.pro_name}}</p>
+        <!--<p>Description: {{product.pro_description | slice:0:30}}...</p>-->
+        <p>Price: ₹{{product.pro_price_per_piece}} {{product.pro_qty_per_box}}piece/Box</p>
       </div>
 
       <div class="col-3 detail-btn">
@@ -32,6 +31,6 @@
 
     </div>
 
-    <span class="add-btn"><a href="#">+</a></span>
+    <span class="add-btn"><a href="/add-product">+</a></span>
   </div>
 </ion-content>

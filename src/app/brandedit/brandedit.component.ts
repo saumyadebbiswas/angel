@@ -42,7 +42,7 @@ export class BrandeditComponent implements OnInit {
   }
 
   getImages() {
-     let options = {
+    let options = {
       maximumImagesCount: 1,
       width: 200,
       quality: 25,

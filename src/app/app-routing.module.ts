@@ -11,6 +11,10 @@ import { ProductdetailsComponent } from './productdetails/productdetails.compone
 import { EditprofileComponent } from './editprofile/editprofile.component';
 import { ProducteditComponent } from './productedit/productedit.component';
 import { BrandeditComponent } from './brandedit/brandedit.component';
+import { CategoryeditComponent } from './categoryedit/categoryedit.component';
+import { StaffsComponent } from './staffs/staffs.component';
+import { StaffeditComponent } from './staffedit/staffedit.component';
+import { AddstaffComponent } from './addstaff/addstaff.component';
 
 const routes: Routes = [
   {
@@ -25,16 +29,20 @@ const routes: Routes = [
     path: 'list', loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
   },
   { path: 'signin', component: SigninComponent },
-  { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardPageModule' },
+  { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardPageModule) },
   { path: 'brands', component: BrandsComponent },
   { path: 'brand/edit/:id', component: BrandeditComponent },
   { path: 'categories', component: CategoriesComponent },
+  { path: 'category/edit/:id', component: CategoryeditComponent },
   { path: 'products', component: ProductsComponent },
   { path: 'add-brand', component: AddbrandComponent },
   { path: 'add-category', component: AddcategoryComponent },
   { path: 'add-product', component: AddproductsComponent },
   { path: 'product/:id', component: ProductdetailsComponent },
   { path: 'product/edit/:id', component: ProducteditComponent },
+  { path: 'staffs', component: StaffsComponent },
+  { path: 'staff/edit/:id', component: StaffeditComponent },
+  { path: 'add-staff', component: AddstaffComponent },
   { path: 'edit-profile', component: EditprofileComponent }
 ];
 

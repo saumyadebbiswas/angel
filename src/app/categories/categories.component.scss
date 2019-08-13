@@ -38,3 +38,24 @@
 .category-list{
     padding: 18px!important;
 }
+
+.add-btn{
+    background: #ff8a65;
+    float: right;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 20px;
+    text-align: center;
+    vertical-align: middle;
+    align-items: center;
+    right: 20px;
+}
+
+.add-btn a{
+    color: #fff;
+    font-size: 38px;
+    //font-weight: bold;
+    text-align: center;
+}
