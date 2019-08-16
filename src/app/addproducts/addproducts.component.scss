@@ -35,6 +35,14 @@ hr {
     border-top: 2px solid #ff8a65;
   }
 
+  .select-product-row{
+      display: flex;
+  }
+
+  .brand-drop{
+      min-width: 98%;
+  }
+
   .has-search .form-control-feedback {
     position: absolute;
     z-index: 2;
@@ -50,9 +58,12 @@ hr {
 .has-search .form-control {
     padding-left: 2.375rem;
 }
+.frm{
+    margin-bottom: 0.1rem!important;
+}
 .frm .item-inner{
     border-bottom: 2px solid #180d52!important;
-    padding-left: 10px;
+    // padding-left: 10px;
 }
 
 .forgot{
@@ -62,8 +73,12 @@ hr {
     font-size: 12px;
 }
 
+.pad-none{
+    padding: 0;
+}
+
 .info-frm{
-    padding-left: 10px!important;
+    // padding-left: 10px!important;
 }
 
 .edit-btn{
@@ -78,5 +93,28 @@ hr {
     color: #fff;
     width: 100%;
     padding: 1rem 0;
+}
+
+.alert-checkbox-group.sc-ion-alert-ios, .alert-radio-group.sc-ion-alert-ios {
+    
+    border-top: none;
+    
+}
+
+.ng2-tag-input__text-input[_ngcontent-iuu-c4] {
+    display: inline;
+    vertical-align: middle;
+    border: none;
+    padding: 0rem!important;
+    height: 38px;
+    font-size: 1em;
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+}
+.alert-message.sc-ion-alert-ios:empty {
+   
+    padding-bottom: 0;
+}
+.alert-head.sc-ion-alert-ios{
+    padding: 0;
 }
 
