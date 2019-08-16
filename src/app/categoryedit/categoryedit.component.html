@@ -15,25 +15,19 @@
     <ion-row justify-content-center>
       <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
         <form  [formGroup]="categoryEditForm" (ngSubmit)="onSubmit()">
-          <div padding>
             <ion-item class="form-group frm">
-              <ion-select id="brand_id" formControlName="brand_id" placeholder="Brand">
+              <ion-select id="brand_id" class="pad-none brand-drop" formControlName="brand_id" placeholder="Brand">
                 <ion-select-option *ngFor="let brnd of brand; let idx = index" [value]="brnd.id">{{brnd.name}}</ion-select-option>
               </ion-select>
             </ion-item>
-          </div>
 
-          <div padding>
             <ion-item class="form-group frm">
               <ion-input type="text" class="info-frm" id="name" formControlName="name" placeholder="Name"></ion-input>
             </ion-item>
-          </div>
 
-          <div padding>
             <ion-item class="form-group frm">
-              <ion-textarea class="info-frm" id="detail" formControlName="detail" placeholder="Detail"></ion-textarea>
+              <ion-textarea class="info-frm" rows="4" cols="20" id="detail" formControlName="detail" placeholder="Detail"></ion-textarea>
             </ion-item>
-          </div>
 
           <div padding>
             <button type="button" size="small" expand="block" (click)="getImages()" class="btn edit-btn">Replace Category Thumbnail</button>

@@ -12,6 +12,10 @@ hr {
     border-top: 2px solid #ff8a65;
   }
 
+  .brand-drop{
+      min-width: 98%;
+  }
+
   .has-search .form-control-feedback {
     position: absolute;
     z-index: 2;
@@ -80,3 +84,7 @@ hr {
     padding: 1rem 0;
 }
 
+// 16082019
+.pad-none{
+    padding: 0;
+}
