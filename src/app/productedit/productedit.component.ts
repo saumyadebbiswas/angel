@@ -61,14 +61,14 @@ export class ProducteditComponent implements OnInit {
       color_list: new FormControl()
     });
     
-    this.showProduct();
+    
     this.showBrand();
     this.showCategory();
     //this.showColors();
   }
 
   clickCancel(): void {
-    this.router.navigate(['/product/'+this.product_id]);
+    this.router.navigate(['/products/'+this.product_id]);
   }
   
   onSubmit() {
@@ -117,7 +117,8 @@ export class ProducteditComponent implements OnInit {
         async res => {  
           if(res.status == true) {
             console.log(res);
-            this.router.navigate(['/product/'+this.product_id]); 
+            // this.router.navigate(['/products/'+this.product_id]); 
+            this.router.navigateByUrl('/products/'+this.product_id); 
           } else {
             const alert = await this.alertCtrl.create({
               header: 'Error!',
@@ -148,6 +149,9 @@ export class ProducteditComponent implements OnInit {
     this.data.productDetails(sendData).subscribe(
       res => {
         if(res.status == true) {
+
+          console.log('edit data : ..........', res);
+          
           this.product = res.data;
 
           let num_of_color = res.data.pro_num_of_color.split(',');
@@ -165,7 +169,9 @@ export class ProducteditComponent implements OnInit {
             price:res.data.pro_price_per_piece,
             qty_per_box:res.data.pro_qty_per_box,
             min_order:res.data.pro_min_order_box_qty,
-            color_list:newarray
+            color_list:newarray,
+            category_id:res.data.pro_cat_id,
+            brand_id:res.data.pro_brand_id
           });
 
           this.set_brand_id = res.data.pro_brand_id;
@@ -175,8 +181,8 @@ export class ProducteditComponent implements OnInit {
 
           //console.log(this.product);
         } else {
-          this.product = res.message;
-          //console.log("No response");
+          //this.product = res.message;
+          console.log("No response");
         }
       });
   }
@@ -186,13 +192,13 @@ export class ProducteditComponent implements OnInit {
       res => {
         if(res.status == true) {
           this.brand = res.data;
-          this.productEditForm.patchValue({
-            brand_id:this.set_brand_id
-          });
+          // this.productEditForm.patchValue({
+          //   brand_id:this.set_brand_id
+          // });
           //console.log(this.brand);
         } else {
-          this.brand = res.message;
-          //console.log("No response");
+          //this.brand = res.message;
+          console.log("No response");
         }
       });
   }
@@ -203,13 +209,14 @@ export class ProducteditComponent implements OnInit {
         if(res.status == true) {
           this.category = res.data;
           this.new_category = res.data;
-          this.productEditForm.patchValue({
-            category_id:this.set_category_id
-          });
+          // this.productEditForm.patchValue({
+          //   category_id:this.set_category_id
+          // });
           //console.log(this.category);
+          this.showProduct();
         } else {
-          this.category = res.message;
-          //console.log("No response");
+          //this.category = res.message;
+          console.log("No response");
         }
       });
   }

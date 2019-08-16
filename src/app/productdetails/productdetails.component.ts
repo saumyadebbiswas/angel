@@ -19,12 +19,23 @@ export class ProductdetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    //console.log("im called.............");
+    
+    // this.product_id = this.route.snapshot.paramMap.get('id');
+    // console.log(this.product_id);
+    // this.showProduct();
+  }
+
+  ionViewWillEnter(){
+    console.log('ion View Will Enter');
+    
     this.product_id = this.route.snapshot.paramMap.get('id');
-    //console.log(this.product_id);
+    console.log(this.product_id);
     this.showProduct();
   }
 
   showProduct() {
+    console.log('show product called.........: ');
     let sendData = {
       product_id: this.product_id
     }
@@ -33,7 +44,7 @@ export class ProductdetailsComponent implements OnInit {
       res => {
         if(res.status == true) {
           this.product = res.data;
-          console.log(this.product);
+          // console.log('show product called.........: ', this.product);
         } else {
           this.product = res.message;
           console.log("No response");

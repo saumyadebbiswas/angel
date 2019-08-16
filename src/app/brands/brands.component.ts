@@ -17,6 +17,11 @@ export class BrandsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    //this.showBrands();
+  }
+
+  ionViewWillEnter(){
+    console.log('ion View Will Enter brand...');
     this.showBrands();
   }
 

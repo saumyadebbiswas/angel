@@ -30,12 +30,12 @@
         </p>
       </div>
 
-      <div class="col-3 detail-btn">
-        <a *ngIf=" staff.role != '0'" href="/staff/edit/{{staff.id}}">Details</a>
+      <div class="col-3 detail-btn" (click)="moveStaffEdit(staff.id)">
+        <span *ngIf=" staff.role != '0'">Details</span>
       </div>
 
     </div>
 
-    <span class="add-btn"><a href="/add-staff">+</a></span>
+    <span class="add-btn" (click)="moveStaffAdd()"><span>+</span></span>
   </div>
 </ion-content>

@@ -17,15 +17,21 @@ export class CategoriesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.showCatergories();
+    //this.showCatergories();
   }  
+
+  ionViewWillEnter(){
+    //console.log('ion View Will Enter category...');
+    
+    this.showCatergories();
+  }
 
   showCatergories() {
     this.data.categoryList().subscribe(
       res => {
         if(res.status == true){
           this.categories = res.data;
-          console.log('Alll category zzz..............', this.categories);
+          //console.log('Alll category zzz..............', this.categories);
         } else {
           console.log("No response");
         }

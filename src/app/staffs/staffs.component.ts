@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-staffs',
@@ -10,9 +11,17 @@ export class StaffsComponent implements OnInit {
 
   staffs: any = [];
 
-  constructor(private data: DataService) { }
+  constructor(
+    private router: Router,
+    private data: DataService
+  ) { }
 
   ngOnInit() {
+    //this.showStaffs();
+  }
+
+  ionViewWillEnter(){
+    //console.log('ion View Will Enter staff...');
     this.showStaffs();
   }
 
@@ -21,11 +30,18 @@ export class StaffsComponent implements OnInit {
       res => {
         if(res.status == true){
           this.staffs = res.data;
-          console.log(this.staffs);
+          //console.log(this.staffs);
         } else {
           console.log("No response");
         }
       });
+  }
+
+  moveStaffAdd() {
+    this.router.navigate(['/add-staff']);
+  }
+  moveStaffEdit(staff_id) {
+    this.router.navigate(['/staff/edit/'+staff_id]);
   }
 
 }

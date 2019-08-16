@@ -72,6 +72,7 @@ export class AppComponent {
     localStorage.setItem("sess_staff_role", "");
 
     this.menuCtrl.close();
+    this.menuCtrl.enable(false);
     this.router.navigate(['/signin']);
   }
 

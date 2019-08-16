@@ -3,7 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/data.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { NavController, Platform, AlertController } from '@ionic/angular';
+import { NavController, Platform, AlertController, MenuController } from '@ionic/angular';
 import { empty } from 'rxjs';
 import { Events } from '@ionic/angular';
 
@@ -21,6 +21,7 @@ export class SigninComponent implements OnInit {
   requestHeader: any = new HttpHeaders();
 
   constructor(
+    public menuCtrl: MenuController,
     private router: Router, 
     private data: DataService,
     public alertCtrl: AlertController,
@@ -29,6 +30,8 @@ export class SigninComponent implements OnInit {
     if(localStorage.getItem("sess_staff_name") !== null && localStorage.getItem("sess_staff_name") !== "") {
       this.router.navigate(['/dashboard']);
     }
+
+    this.menuCtrl.enable(false);
     
     //this.requestHeader.append("Accept", 'application/json');
     this.requestHeader.append('Content-Type', 'application/json'); 
@@ -63,6 +66,7 @@ export class SigninComponent implements OnInit {
             localStorage.setItem("sess_staff_role", res.data.role);
 
             this.events.publish('userLogin', JSON.stringify({loggedin: true}));
+            this.menuCtrl.enable(true);
             //this.token = res.token;
             // console.log(this.token);
             //localStorage.setItem('token', this.token)

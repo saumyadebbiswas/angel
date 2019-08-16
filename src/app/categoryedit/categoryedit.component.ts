@@ -45,7 +45,7 @@ export class CategoryeditComponent implements OnInit {
 
     this.category_id = this.route.snapshot.paramMap.get('id');
 
-    this.showCategories();
+    //this.showCategories();
     this.showBrand();
   }
 
@@ -124,7 +124,8 @@ export class CategoryeditComponent implements OnInit {
 
           this.categoryEditForm.patchValue({
             name:res.data.cat_name,
-            detail:res.data.cat_description
+            detail:res.data.cat_description,
+            brand_id:res.data.cat_brand_id
           });
 
           console.log('category details.......', this.category);
@@ -140,10 +141,12 @@ export class CategoryeditComponent implements OnInit {
       res => {
         if(res.status == true) {
           this.brand = res.data;
-          this.categoryEditForm.patchValue({
-            brand_id:this.set_brand_id
-          });
+          // this.categoryEditForm.patchValue({
+          //   brand_id:this.set_brand_id
+          // });
           //console.log(this.brand);
+
+          this.showCategories();
         } else {
           this.brand = res.message;
           console.log("No response");

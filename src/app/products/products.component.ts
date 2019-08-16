@@ -33,7 +33,7 @@ export class ProductsComponent implements OnInit {
   }
 
   moveProductDetails(product_id) {
-    this.router.navigate(['/product/'+product_id]);
+    this.router.navigate(['/products/'+product_id]);
   }
   moveProductAdd() {
     this.router.navigate(['/add-product']);
