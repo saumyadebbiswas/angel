@@ -43,3 +43,26 @@ button{ background-color: transparent !important;}
 .icon-inner{ display: none !important;}
 .ion-focusable a{ box-shadow: none !important; border: none !important;}
 .item-detail-icon{ display: none;}
+
+.alert-checkbox-group.sc-ion-alert-ios, .alert-radio-group.sc-ion-alert-ios {
+    
+    border-top: none;
+    
+}
+
+.ng2-tag-input__text-input[_ngcontent-ssg-c4] {
+    
+    padding: 0!important;
+    }
+
+.alert-message.sc-ion-alert-ios:empty {
+   
+    padding-bottom: 0;
+}
+.alert-head.sc-ion-alert-ios{
+    padding: 0;
+}
+
+.img-center{
+    text-align: center;
+}
