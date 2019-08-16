@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-brands',
@@ -10,7 +11,10 @@ export class BrandsComponent implements OnInit {
 
   brands: any = [];
 
-  constructor(private data: DataService) { }
+  constructor(
+    private router: Router,
+    private data: DataService
+  ) { }
 
   ngOnInit() {
     this.showBrands();
@@ -26,6 +30,13 @@ export class BrandsComponent implements OnInit {
           console.log("No response");
         }
       });
+  }
+
+  moveBrandEdit(brand_id) {
+    this.router.navigate(['/brand/edit/'+brand_id])
+  }
+  moveBrandAdd() {
+    this.router.navigate(['/add-brand'])
   }
 
 }

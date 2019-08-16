@@ -14,14 +14,12 @@
   <div class="container category-list">
     <div class="row">
       <div class="col-6 category" *ngFor="let cat of categories">
-        <a href="/category/edit/{{cat.cat_id}}">
-          <img src="http://phpstack-304562-945735.cloudwaysapps.com/crm/upload/category/{{cat.cat_image_name}}" alt="" />
-          <div class="category-name">{{cat.brand_name}}/{{cat.cat_name}}</div>
-        </a>
+        <img (click)="moveCategoryEdit(cat.cat_id)" src="http://phpstack-304562-945735.cloudwaysapps.com/crm/upload/category/{{cat.cat_image_name}}" alt="" />
+        <div (click)="moveCategoryEdit(cat.cat_id)" class="category-name">{{cat.brand_name}}/{{cat.cat_name}}</div>
       </div>
     </div>
 
-    <span class="add-btn"><a href="/add-category">+</a></span>
+    <span class="add-btn" (click)="moveCategoryAdd()"><span>+</span></span>
   </div>
 </ion-content>
     

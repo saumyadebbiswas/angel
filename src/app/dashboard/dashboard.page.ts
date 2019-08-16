@@ -16,4 +16,17 @@ export class DashboardPage implements OnInit {
   ngOnInit() {
   }
 
+  moveProducts() {
+    this.router.navigate(['/products']);
+  }
+  moveBrands() {
+    this.router.navigate(['/brands']);
+  }
+  moveCategories() {
+    this.router.navigate(['/categories']);
+  }
+  moveStaffs() {
+    this.router.navigate(['/staffs']);
+  }
+
 }

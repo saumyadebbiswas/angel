@@ -14,46 +14,37 @@
   <div class="container product-list">
     <div class="row">
       <div *ngIf="sess_staff_role.includes('0') || sess_staff_role.includes('2')" class="col-6 product">
-        <a href="#">
-          <img src="../../assets/images/aaa.jpg" alt="" />
-          <div class="product-name">Orders</div>
-        </a>
+        <img src="../../assets/images/aaa.jpg" alt="" />
+        <div class="product-name">Orders</div>
       </div>
-      <div *ngIf="sess_staff_role.includes('0') || sess_staff_role.includes('1')" class="col-6 product">
-        <a href="/products">
-          <img src="../../assets/images/aaa.jpg" alt="" />
-          <div class="product-name">Products</div>
-        </a>
+
+      <div *ngIf="sess_staff_role.includes('0') || sess_staff_role.includes('1')" class="col-6 product" (click)="moveProducts()">
+        <img src="../../assets/images/aaa.jpg" alt="" />
+        <div class="product-name">Products</div>
       </div>
     </div>
 
     <div class="row">
-      <div *ngIf="sess_staff_role.includes('0')" class="col-6 product">
-        <a href="/brands">
-          <img src="../../assets/images/aaa.jpg" alt="" />
-          <div class="product-name">Brands</div>
-        </a>
+      <div *ngIf="sess_staff_role.includes('0')" class="col-6 product" (click)="moveBrands()">
+        <img src="../../assets/images/aaa.jpg" alt="" />
+        <div class="product-name">Brands</div>
       </div>
-      <div *ngIf="sess_staff_role.includes('0')" class="col-6 product">
-        <a href="/categories">
-          <img src="../../assets/images/aaa.jpg" alt="" />
-          <div class="product-name">Categories</div>
-        </a>
+      
+      <div *ngIf="sess_staff_role.includes('0')" class="col-6 product" (click)="moveCategories()">
+        <img src="../../assets/images/aaa.jpg" alt="" />
+        <div class="product-name">Categories</div>
       </div>
     </div>
 
     <div class="row">
-      <div *ngIf="sess_staff_role.includes('0')" class="col-6 product">
-        <a href="/staffs">
-          <img src="../../assets/images/aaa.jpg" alt="" />
-          <div class="product-name">Staffs</div>
-        </a>
+      <div *ngIf="sess_staff_role.includes('0')" class="col-6 product" (click)="moveStaffs()">
+        <img src="../../assets/images/aaa.jpg" alt="" />
+        <div class="product-name">Staffs</div>
       </div>
+
       <div *ngIf="sess_staff_role.includes('0') || sess_staff_role.includes('3')" class="col-6 product">
-        <a href="#">
-          <img src="../../assets/images/aaa.jpg" alt="" />
-          <div class="product-name">Customers</div>
-        </a>
+        <img src="../../assets/images/aaa.jpg" alt="" />
+        <div class="product-name">Customers</div>
       </div>
     </div>
   </div>

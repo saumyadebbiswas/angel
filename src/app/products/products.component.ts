@@ -11,7 +11,10 @@ export class ProductsComponent implements OnInit {
 
   products:any = [];
 
-  constructor(private router: Router, private data:DataService) { }
+  constructor(
+    private router: Router, 
+    private data:DataService
+  ) { }
 
   ngOnInit() {
     this.showProducts();
@@ -27,5 +30,12 @@ export class ProductsComponent implements OnInit {
           console.log("No response");
         }
       });
+  }
+
+  moveProductDetails(product_id) {
+    this.router.navigate(['/product/'+product_id]);
+  }
+  moveProductAdd() {
+    this.router.navigate(['/add-product']);
   }
 }

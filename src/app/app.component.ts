@@ -49,9 +49,7 @@ export class AppComponent {
       this.router.navigate(['/signin']);
     }
 
-    //this.sess_staff_id = localStorage.getItem("sess_staff_id");  
-    
-    
+    //this.sess_staff_id = localStorage.getItem("sess_staff_id"); 
 
     events.subscribe('userLogin', (data) => {
       // user and time are the same arguments passed in `events.publish(user, time)`
@@ -74,7 +72,6 @@ export class AppComponent {
     localStorage.setItem("sess_staff_role", "");
 
     this.menuCtrl.close();
-
     this.router.navigate(['/signin']);
   }
 
@@ -84,6 +81,11 @@ export class AppComponent {
       this.sess_staff_phone = localStorage.getItem("sess_staff_phone");
     // }, 1000);
     console.log('get local value called..................');    
+  }
+
+  moveDasboard() {
+    this.menuCtrl.close();
+    this.router.navigate(['/dashboard']);
   }
     
 }

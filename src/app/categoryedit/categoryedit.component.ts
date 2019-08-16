@@ -127,7 +127,7 @@ export class CategoryeditComponent implements OnInit {
             detail:res.data.cat_description
           });
 
-          console.log(this.category);
+          console.log('category details.......', this.category);
         } else {
           this.category = res.message;
           console.log("No response");
@@ -143,7 +143,7 @@ export class CategoryeditComponent implements OnInit {
           this.categoryEditForm.patchValue({
             brand_id:this.set_brand_id
           });
-          console.log(this.brand);
+          //console.log(this.brand);
         } else {
           this.brand = res.message;
           console.log("No response");

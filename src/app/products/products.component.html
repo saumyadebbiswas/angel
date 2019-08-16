@@ -25,12 +25,12 @@
         <p>Price: ₹{{product.pro_price_per_piece}} {{product.pro_qty_per_box}}piece/Box</p>
       </div>
 
-      <div class="col-3 detail-btn">
-        <a href="/product/{{product.pro_id}}">Details</a>
+      <div class="col-3 detail-btn" (click)="moveProductDetails(product.pro_id)">
+        <span>Details</span>
       </div>
 
     </div>
 
-    <span class="add-btn"><a href="/add-product">+</a></span>
+    <span class="add-btn"><span (click)="moveProductAdd()">+</span></span>
   </div>
 </ion-content>

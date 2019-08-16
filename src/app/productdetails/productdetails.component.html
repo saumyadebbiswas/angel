@@ -19,13 +19,12 @@
       <div class="col-12 product-description">
         <h4>{{product.pro_name}}</h4>
         <p>{{product.pro_description}} </p>
+        <p>Colors: {{product.pro_num_of_color}} </p>
         <p>Order Terms</p>
         <p>Minimum Order Quantity {{product.pro_min_order_box_qty}} Boxes</p>
         <p class="price">₹{{product.pro_price_per_piece}}/Piece | Quantity Per Box: 6 Pieces</p>
-        <div class="edit">
-          <a href="/product/edit/{{product.pro_id}}">
-            Update
-          </a>
+        <div class="edit" (click)="moveProductEdit(product.pro_id)">
+          <span>Update</span>
         </div>
       </div>
     </div>

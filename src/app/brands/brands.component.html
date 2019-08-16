@@ -16,13 +16,11 @@
     <div class="row">
       <div class="col-12 brand">
         <div *ngFor="let brand of brands">
-          <a href="/brand/edit/{{brand.id}}">
-            <img src="http://phpstack-304562-945735.cloudwaysapps.com/crm/upload/brand/{{brand.image_name}}" alt="{{brand.name}}" />
-          </a>
+          <img (click)="moveBrandEdit(brand.id)" src="http://phpstack-304562-945735.cloudwaysapps.com/crm/upload/brand/{{brand.image_name}}" alt="{{brand.name}}" />
         </div>
       </div>
     </div>
     
-    <span class="add-btn"><a href="/add-brand">+</a></span>
+    <span class="add-btn" (click)="moveBrandAdd()"><span>+</span></span>
   </div>
 </ion-content>
