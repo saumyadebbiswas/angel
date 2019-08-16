@@ -66,3 +66,35 @@ button{ background-color: transparent !important;}
 .img-center{
     text-align: center;
 }
+
+// -------manu css-------------
+
+.manu-header{
+    background: #ff8a65;
+    color: #fff;
+}
+
+.manu-bar{
+    color: #fff;
+}
+.info-btn{
+    font-size: 20px;
+    color: #fff;
+    z-index: 99;
+    display: block;
+    float: right;
+    padding-right: 3%;
+    position: relative;
+    cursor: pointer;
+}
+
+
+.header-md .toolbar-background{
+    background-color: #000 !important;
+}
+
+.my-toolbar{
+    --background:  #ff8a65;
+}
+
+// ---------end manu css-----------
