@@ -28,6 +28,8 @@ import { CategoryeditComponent } from './categoryedit/categoryedit.component';
 import { StaffsComponent } from './staffs/staffs.component';
 import { StaffeditComponent } from './staffedit/staffedit.component';
 import { AddstaffComponent } from './addstaff/addstaff.component';
+import { OrdersComponent } from './orders/orders.component';
+import { OrderdetailsComponent } from './orderdetails/orderdetails.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { AddstaffComponent } from './addstaff/addstaff.component';
     CategoryeditComponent,
     StaffsComponent,
     StaffeditComponent,
-    AddstaffComponent
+    AddstaffComponent,
+    OrdersComponent,
+    OrderdetailsComponent
   ],
   entryComponents: [],
   imports: [

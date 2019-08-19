@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar class="my-toolbar">
+    <ion-buttons slot="start">
+      <ion-menu-button class="manu-bar"></ion-menu-button>
+    </ion-buttons>
+    <ion-title color="light">
+      Orders
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <div class="row product-box" *ngFor="let order of orders">
+
+      <div class="col-9 product-description">
+        <h4>Order ID: {{order.order_id}}</h4>
+        <p>Customer Name: {{order.cust_name}}</p>
+        <p>Date: {{order.order_created | date: "MMM dd, yyyy hh:mm a"}}</p>
+        <p *ngIf="order.order_status == 1">Status: Pending</p>
+        <p *ngIf="order.order_status == 0">Status: Cancelled</p>
+      </div>
+
+      <div class="col-3 detail-btn" (click)="moveOrderDetails(order.order_id)">
+        <span>Details</span>
+      </div>
+
+    </div>
+  </div>
+</ion-content>

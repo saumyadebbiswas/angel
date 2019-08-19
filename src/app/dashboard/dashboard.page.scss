@@ -1,12 +1,16 @@
 
 .product-name{
-    position: absolute;
+    position: relative;
     font-size: 14px;
     text-align: center;
-    left: 0;
+    left: 30px;
     color: #fff;
-    bottom: 18px;
+    bottom: 40px;
     width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    left: 0;
+    margin-top: 0px;
+    padding: 10px 0px;
 }
 .product{
     position: relative;

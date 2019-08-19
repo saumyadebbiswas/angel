@@ -15,6 +15,8 @@ import { CategoryeditComponent } from './categoryedit/categoryedit.component';
 import { StaffsComponent } from './staffs/staffs.component';
 import { StaffeditComponent } from './staffedit/staffedit.component';
 import { AddstaffComponent } from './addstaff/addstaff.component';
+import { OrdersComponent } from './orders/orders.component';
+import { OrderdetailsComponent } from './orderdetails/orderdetails.component';
 
 const routes: Routes = [
   {
@@ -44,7 +46,9 @@ const routes: Routes = [
   { path: 'staffs', component: StaffsComponent },
   { path: 'staff/edit/:id', component: StaffeditComponent },
   { path: 'add-staff', component: AddstaffComponent },
-  { path: 'edit-profile', component: EditprofileComponent }
+  { path: 'edit-profile', component: EditprofileComponent },
+  { path: 'orders', component: OrdersComponent },
+  { path: 'orders/:id', component: OrderdetailsComponent }
 ];
 
 @NgModule({

@@ -84,4 +84,12 @@ export class DataService {
   staffAdd(input:any): Observable<any> {
     return this.http.post<any>('http://phpstack-304562-945735.cloudwaysapps.com/crm/api/authentication/staff-insert', input, {headers: this.requestHeader})
   }
+
+  orderList(): Observable<any> {
+    return this.http.get<any>('http://phpstack-304562-945735.cloudwaysapps.com/crm/api/orders/all-details', {headers: this.requestHeader})
+  }
+
+  orderItemList(input:any): Observable<any> {
+    return this.http.get<any>('http://phpstack-304562-945735.cloudwaysapps.com/crm/api/orders/all-items/'+input.order_id, {headers: this.requestHeader})
+  }
 }

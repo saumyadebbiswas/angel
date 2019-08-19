@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar class="my-toolbar">
+    <ion-buttons slot="start">
+      <ion-menu-button class="manu-bar"></ion-menu-button>
+    </ion-buttons>
+    <ion-title color="light">
+      Order ID: {{order_id}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <div class="row product-box" *ngFor="let order_item of order_items">
+
+      <div class="col-8 product-description">
+        <h4>{{order_item.pro_name}}</h4>
+        <p>Design ID: {{order_item.pro_design_num}}</p>
+        <p>Order Date: {{order_item.order_created | date: "MMM dd, yyyy hh:mm a"}}</p>
+        <div class="price-details">
+          <p class="qty-price">
+            <strong> Qty:</strong> <span>{{order_item.oi_quantity}}</span>
+          </p>
+          <p>
+            <strong>Price:</strong> <span>₹{{order_item.oi_old_price}}/Piece</span>
+          </p>
+        </div>
+       
+      </div>
+
+      <div class="col-4 detail-btn">
+        <img src="http://phpstack-304562-945735.cloudwaysapps.com/crm/upload/product/{{order_item.pro_image_name}}" alt="{{order_item.pro_name}}" />
+        <p class="total-price">
+          <strong>Total Price:</strong> <span>₹{{order_item.oi_quantity * order_item.oi_old_price}}</span>
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</ion-content>
+
