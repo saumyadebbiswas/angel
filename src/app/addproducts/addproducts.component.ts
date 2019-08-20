@@ -209,7 +209,8 @@ export class AddproductsComponent implements OnInit {
   }
 
   getAllImages(index) {
-    //console.log('image index...............', index);
+    //this.imageResponseAll[index] = 'val_'+index;
+    //console.log('image index...............', index, this.imageResponseAll);
     let options = {
       maximumImagesCount: 1,
       width: 200,
@@ -220,6 +221,7 @@ export class AddproductsComponent implements OnInit {
     this.imagePicker.getPictures(options).then((results) => {
       for (var i = 0; i < results.length; i++) {
         this.imageResponseAll[index] = 'data:image/jpeg;base64,' + results[i];
+        //this.imageResponseAll.push('data:image/jpeg;base64,' + results[i]);
       }
     }, (err) => {
       alert(err);
