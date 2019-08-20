@@ -16,10 +16,9 @@ export class ProducteditComponent implements OnInit {
   product:any = [];
   brand:any = [];
   category:any = [];
-  //color:any = [];
+  allimages:any = [];
 
-  set_brand_id:String;
-  set_category_id:String;
+  //color:any = [];
   //set_color_list: any;
   
   productEditForm: FormGroup;
@@ -37,6 +36,7 @@ export class ProducteditComponent implements OnInit {
   new_category:any = [];
 
   imageResponse:any = [];
+  imageResponseAll:any = [];
 
   constructor(
     private router: Router, 
@@ -109,7 +109,9 @@ export class ProducteditComponent implements OnInit {
         min_order_box_quantity: this.min_order,
         number_of_color: this.color_list,
         image_name: this.image_name,
-        imagefile: this.imageResponse[0]
+        imagefile: this.imageResponse[0],
+        imagefileall: this.imageResponseAll,
+        allimages: this.allimages
       }
 
       console.log(sendData);
@@ -149,18 +151,14 @@ export class ProducteditComponent implements OnInit {
     this.data.productDetails(sendData).subscribe(
       res => {
         if(res.status == true) {
-
-          console.log('edit data : ..........', res);
-          
+          //console.log('edit data : ..........', res);
           this.product = res.data;
 
           let num_of_color = res.data.pro_num_of_color.split(',');
           let newarray = [];
-          for(let i=0; i<num_of_color.length; i++){
+          for(let i=0; i<num_of_color.length; i++) {
             newarray[i] = {display: num_of_color[i], value: num_of_color[i]};
           }
-          
-          //console.log('Colors....', newarray);
 
           this.productEditForm.patchValue({
             name:res.data.pro_name,
@@ -174,12 +172,14 @@ export class ProducteditComponent implements OnInit {
             brand_id:res.data.pro_brand_id
           });
 
-          this.set_brand_id = res.data.pro_brand_id;
-          this.set_category_id = res.data.pro_cat_id;
           //this.set_color_list = res.data.pro_num_of_color.split(',');
           this.image_name = res.data.pro_image_name;
 
-          //console.log(this.product);
+          let productimages = res.data.productimages;
+          productimages.forEach(element => {
+            this.allimages.push(element);
+            this.imageResponseAll.push(element.proimg_image_name);
+          });
         } else {
           //this.product = res.message;
           console.log("No response");
@@ -192,9 +192,6 @@ export class ProducteditComponent implements OnInit {
       res => {
         if(res.status == true) {
           this.brand = res.data;
-          // this.productEditForm.patchValue({
-          //   brand_id:this.set_brand_id
-          // });
           //console.log(this.brand);
         } else {
           //this.brand = res.message;
@@ -209,9 +206,6 @@ export class ProducteditComponent implements OnInit {
         if(res.status == true) {
           this.category = res.data;
           this.new_category = res.data;
-          // this.productEditForm.patchValue({
-          //   category_id:this.set_category_id
-          // });
           //console.log(this.category);
           this.showProduct();
         } else {
@@ -273,6 +267,23 @@ export class ProducteditComponent implements OnInit {
     this.imagePicker.getPictures(options).then((results) => {
       for (var i = 0; i < results.length; i++) {
         this.imageResponse.push('data:image/jpeg;base64,' + results[i]);
+      }
+    }, (err) => {
+      alert(err);
+    });
+  }
+
+  getAllImages(index) {
+    let options = {
+      maximumImagesCount: 1,
+      width: 200,
+      quality: 25,
+      outputType: 1
+    };
+
+    this.imagePicker.getPictures(options).then((results) => {
+      for (var i = 0; i < results.length; i++) {
+        this.imageResponseAll[index] = 'data:image/jpeg;base64,' + results[i];
       }
     }, (err) => {
       alert(err);

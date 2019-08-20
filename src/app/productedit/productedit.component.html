@@ -19,45 +19,45 @@
     <ion-row justify-content-center>
       <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
         <form  [formGroup]="productEditForm" (ngSubmit)="onSubmit()">
-            <ion-item class="form-group frm">
-              <ion-input type="text" class="info-frm" id="name" formControlName="name" placeholder="Name"></ion-input>
-            </ion-item>
+          <ion-item class="form-group frm">
+            <ion-input type="text" class="info-frm" id="name" formControlName="name" placeholder="Name"></ion-input>
+          </ion-item>
 
-            <ion-item class="form-group frm">
-              <ion-input type="text" class="info-frm" id="design_num" formControlName="design_num" placeholder="Design ID"></ion-input>
-            </ion-item>
-          
-            <ion-item class="form-group frm">
-                <ion-textarea placeholder="Detail" rows="4" cols="20" class="info-frm" id="detail" formControlName="detail"></ion-textarea>
-            </ion-item>
+          <ion-item class="form-group frm">
+            <ion-input type="text" class="info-frm" id="design_num" formControlName="design_num" placeholder="Design ID"></ion-input>
+          </ion-item>
+        
+          <ion-item class="form-group frm">
+              <ion-textarea placeholder="Detail" rows="4" cols="20" class="info-frm" id="detail" formControlName="detail"></ion-textarea>
+          </ion-item>
           
           <div class="select-product-row">
-              <ion-item class="col-6 form-group frm pad-none">
-                <ion-select id="brand_id" class="pad-none brand-drop" formControlName="brand_id" (ionChange)="onChange($event)">
-                  <ion-select-option *ngFor="let brnd of brand; let idx = index" [value]="brnd.id">{{brnd.name}}</ion-select-option>
-                </ion-select>
-              </ion-item>
+            <ion-item class="col-6 form-group frm pad-none">
+              <ion-select id="brand_id" class="pad-none brand-drop" formControlName="brand_id" (ionChange)="onChange($event)">
+                <ion-select-option *ngFor="let brnd of brand; let idx = index" [value]="brnd.id">{{brnd.name}}</ion-select-option>
+              </ion-select>
+            </ion-item>
 
-              <ion-item class="col-6 form-group frm pad-none">
-                <ion-select id="category_id" class="pad-none brand-drop" formControlName="category_id">
-                  <ion-select-option *ngFor="let cat of new_category" [value]="cat.cat_id">{{cat.cat_name}}</ion-select-option>
-                </ion-select>
-              </ion-item>
+            <ion-item class="col-6 form-group frm pad-none">
+              <ion-select id="category_id" class="pad-none brand-drop" formControlName="category_id">
+                <ion-select-option *ngFor="let cat of new_category" [value]="cat.cat_id">{{cat.cat_name}}</ion-select-option>
+              </ion-select>
+            </ion-item>
           </div>
 
           <div class="select-product-row">
-              <ion-item class="col-6 form-group frm pad-none">
-                <ion-input type="text" class="info-frm" id="price" formControlName="price" placeholder="Price Per Piece"></ion-input>
-              </ion-item>
+            <ion-item class="col-6 form-group frm pad-none">
+              <ion-input type="text" class="info-frm" id="price" formControlName="price" placeholder="Price Per Piece"></ion-input>
+            </ion-item>
 
-              <ion-item class="col-6 form-group frm pad-none">
-                <ion-input type="text" class="info-frm" id="qty_per_box" formControlName="qty_per_box" placeholder="Qty Per Box"></ion-input>
-              </ion-item>
+            <ion-item class="col-6 form-group frm pad-none">
+              <ion-input type="text" class="info-frm" id="qty_per_box" formControlName="qty_per_box" placeholder="Qty Per Box"></ion-input>
+            </ion-item>
           </div>
 
-            <ion-item class="form-group frm">
-              <ion-input type="text" class="info-frm" id="min_order" formControlName="min_order" placeholder="Minimum Order - Boxes Quantity"></ion-input>
-            </ion-item>
+          <ion-item class="form-group frm">
+            <ion-input type="text" class="info-frm" id="min_order" formControlName="min_order" placeholder="Minimum Order - Boxes Quantity"></ion-input>
+          </ion-item>
 
           <!--<div padding>
             <ion-label>Available Colors</ion-label>
@@ -68,9 +68,67 @@
             </ion-item>
           </div>-->
 
-            <ion-item class="form-group frm">
-              <tag-input formControlName="color_list" [separatorKeyCodes]="[32]" secondaryPlaceholder="Colors"></tag-input>
-            </ion-item>
+          <ion-item class="form-group frm">
+            <tag-input formControlName="color_list" [separatorKeyCodes]="[32]" secondaryPlaceholder="Colors"></tag-input>
+          </ion-item>
+
+          <div padding>
+            <p class="photo-text">Products Photos</p>
+            <div class="photo-group">
+
+              <div class="avatar-upload">
+                <div class="avatar-edit" (click)="getAllImages(0)">
+                  <!-- <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" /> -->
+                  <input type='button' id="imageUploada" />
+                  <label for="imageUpload">+</label>
+                </div>
+                <div class="avatar-preview">
+                  <img class="image" *ngIf="imageResponseAll[0] != null" src="http://phpstack-304562-945735.cloudwaysapps.com/crm/upload/gallery/{{imageResponseAll[0]}}" alt="" srcset="">
+                </div>
+              </div>
+
+              <div class="avatar-upload">
+                <div class="avatar-edit" (click)="getAllImages(1)">
+                  <input type='button' id="imageUploadb" />
+                  <label for="imageUpload">+</label>
+                </div>
+                <div class="avatar-preview">
+                  <img class="image" *ngIf="imageResponseAll[1] != null" src="http://phpstack-304562-945735.cloudwaysapps.com/crm/upload/gallery/{{imageResponseAll[1]}}" alt="" srcset="">
+                </div>
+              </div>
+
+              <div class="avatar-upload">
+                <div class="avatar-edit" (click)="getAllImages(2)">
+                  <input type='button' id="imageUploadc" />
+                  <label for="imageUpload">+</label>
+                </div>
+                <div class="avatar-preview">
+                  <img class="image" *ngIf="imageResponseAll[2] != null" src="http://phpstack-304562-945735.cloudwaysapps.com/crm/upload/gallery/{{imageResponseAll[2]}}" alt="" srcset="">
+                </div>
+              </div>
+
+              <div class="avatar-upload">
+                <div class="avatar-edit" (click)="getAllImages(3)">
+                  <input type='button' id="imageUploadd" />
+                  <label for="imageUpload">+</label>
+                </div>
+                <div class="avatar-preview">
+                  <img class="image" *ngIf="imageResponseAll[3] != null" src="http://phpstack-304562-945735.cloudwaysapps.com/crm/upload/gallery/{{imageResponseAll[3]}}" alt="" srcset="">
+                </div>
+              </div>
+
+              <div class="avatar-upload">
+                <div class="avatar-edit" (click)="getAllImages(4)">
+                  <input type='button' id="imageUploade" />
+                  <label for="imageUpload">+</label>
+                </div>
+                <div class="avatar-preview">
+                  <img class="image" *ngIf="imageResponseAll[4] != null" src="http://phpstack-304562-945735.cloudwaysapps.com/crm/upload/gallery/{{imageResponseAll[4]}}" alt="" srcset="">
+                </div>
+              </div>
+
+            </div>
+          </div>
 
           <div padding>
             <button type="button" size="small" expand="block" (click)="getImages()" class="btn edit-btn">Replace Product Thumbnail</button>
