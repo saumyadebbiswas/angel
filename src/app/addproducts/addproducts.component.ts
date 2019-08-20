@@ -32,6 +32,7 @@ export class AddproductsComponent implements OnInit {
   new_category:any = [];
 
   imageResponse:any = [];
+  imageResponseAll:any = [];
 
   constructor(
     private router: Router, 
@@ -82,14 +83,13 @@ export class AddproductsComponent implements OnInit {
     this.min_order = this.productAddForm.get('min_order').value.trim();
     this.color_list = this.productAddForm.get('color_list').value;
 
-    if(this.imageResponse[0]==null){
+    if(this.imageResponse[0]==null) {
       this.imageResponse[0] = "";
     }
 
     if(this.name == "" || this.design_num == "" || this.detail == "" || 
     this.brand_id == null || this.category_id == null || this.price == "" || 
-    this.qty_per_box == "" || this.min_order == "" || this.color_list == "" || 
-    this.color_list == null || this.imageResponse[0] == "") {
+    this.qty_per_box == "" || this.min_order == "" || this.color_list == "" ||this.color_list == null || this.imageResponse[0] == "") {
       alert('Enter full credentials!');
     } else {
       this.color_list = this.tagArrayToString(this.color_list);
@@ -104,7 +104,8 @@ export class AddproductsComponent implements OnInit {
         quantity_per_box: this.qty_per_box,
         min_order_box_quantity: this.min_order,
         number_of_color: this.color_list,
-        imagefile: this.imageResponse[0]
+        imagefile: this.imageResponse[0],
+        imagefileall: this.imageResponseAll
       }
 
       console.log(sendData);
@@ -205,6 +206,25 @@ export class AddproductsComponent implements OnInit {
     }, (err) => {
       alert(err);
     });
+  }
+
+  getAllImages(index) {
+    //console.log('image index...............', index);
+    let options = {
+      maximumImagesCount: 1,
+      width: 200,
+      quality: 25,
+      outputType: 1
+    };
+    //this.imageResponse = [];
+    this.imagePicker.getPictures(options).then((results) => {
+      for (var i = 0; i < results.length; i++) {
+        this.imageResponseAll[index] = 'data:image/jpeg;base64,' + results[i];
+      }
+    }, (err) => {
+      alert(err);
+    });
+    
   }
 
 }
