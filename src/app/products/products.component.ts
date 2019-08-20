@@ -17,6 +17,10 @@ export class ProductsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    //this.showProducts();
+  }
+
+  ionViewWillEnter(){
     this.showProducts();
   }
 

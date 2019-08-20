@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,8 +10,13 @@ import { Router } from '@angular/router';
 export class DashboardPage implements OnInit {
   sess_staff_role: String;
 
-  constructor(private router: Router) { 
+  constructor(
+    public menuCtrl: MenuController,
+    private router: Router
+  ) { 
     this.sess_staff_role = localStorage.getItem("sess_staff_role");
+
+    this.menuCtrl.enable(true);
   }
 
   ngOnInit() {
