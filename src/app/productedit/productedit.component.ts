@@ -17,6 +17,7 @@ export class ProducteditComponent implements OnInit {
   brand:any = [];
   category:any = [];
   allimages:any = [];
+  imagepath:any = [];
 
   //color:any = [];
   //set_color_list: any;
@@ -179,6 +180,7 @@ export class ProducteditComponent implements OnInit {
           productimages.forEach(element => {
             this.allimages.push(element);
             this.imageResponseAll.push(element.proimg_image_name);
+            this.imagepath.push('http://phpstack-304562-945735.cloudwaysapps.com/crm/upload/gallery/');
           });
         } else {
           //this.product = res.message;
@@ -232,10 +234,8 @@ export class ProducteditComponent implements OnInit {
   }*/
 
   onChange($event) {
-    console.log('on change called', $event.target.value);
-    console.log('all cat list/................', this.category);
-    
-    
+    //console.log('on change called', $event.target.value);
+    //console.log('all cat list................', this.category);
     let brand_id = $event.target.value;
     this.new_category = [];
     
@@ -252,8 +252,7 @@ export class ProducteditComponent implements OnInit {
         this.new_category.push(elem);
       }
     });
-  
-    console.log(this.new_category);
+    //console.log(this.new_category);
   }
 
   getImages() {
@@ -274,6 +273,7 @@ export class ProducteditComponent implements OnInit {
   }
 
   getAllImages(index) {
+    //console.log('all index.........', index);
     let options = {
       maximumImagesCount: 1,
       width: 200,
@@ -284,6 +284,7 @@ export class ProducteditComponent implements OnInit {
     this.imagePicker.getPictures(options).then((results) => {
       for (var i = 0; i < results.length; i++) {
         this.imageResponseAll[index] = 'data:image/jpeg;base64,' + results[i];
+        this.imagepath[index] = "";
       }
     }, (err) => {
       alert(err);

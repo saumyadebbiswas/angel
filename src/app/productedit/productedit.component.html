@@ -1,16 +1,11 @@
 <ion-header>
     <ion-toolbar class="my-toolbar">
-      <!-- <div> -->
       <ion-buttons slot="start">
         <ion-menu-button class="manu-bar"></ion-menu-button>
       </ion-buttons>
       <ion-title color="light">
-          Edit Product - {{product.pro_name}}
+        Edit Product - {{product.pro_name}}
       </ion-title>
-      <!-- <span class="info-btn">
-        <i class="fa fa-ellipsis-v"></i>
-      </span> -->
-      <!-- </div> -->
     </ion-toolbar>
 </ion-header>
 
@@ -18,7 +13,7 @@
   <ion-grid>
     <ion-row justify-content-center>
       <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
-        <form  [formGroup]="productEditForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="productEditForm" (ngSubmit)="onSubmit()">
           <ion-item class="form-group frm">
             <ion-input type="text" class="info-frm" id="name" formControlName="name" placeholder="Name"></ion-input>
           </ion-item>
@@ -76,54 +71,54 @@
             <p class="photo-text">Products Photos</p>
             <div class="photo-group">
 
-              <div class="avatar-upload">
-                <div class="avatar-edit" (click)="getAllImages(0)">
+              <div class="avatar-upload" (click)="getAllImages(0)">
+                <div class="avatar-edit">
                   <!-- <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" /> -->
                   <input type='button' id="imageUploada" />
                   <label for="imageUpload">+</label>
                 </div>
                 <div class="avatar-preview">
-                  <img class="image" *ngIf="imageResponseAll[0] != null" src="http://phpstack-304562-945735.cloudwaysapps.com/crm/upload/gallery/{{imageResponseAll[0]}}" alt="" srcset="">
+                  <img class="image" *ngIf="imageResponseAll[0] != null" src="{{imagepath[0] + imageResponseAll[0]}}" alt="" srcset="">
                 </div>
               </div>
 
-              <div class="avatar-upload">
-                <div class="avatar-edit" (click)="getAllImages(1)">
+              <div class="avatar-upload" (click)="getAllImages(1)">
+                <div class="avatar-edit">
                   <input type='button' id="imageUploadb" />
                   <label for="imageUpload">+</label>
                 </div>
                 <div class="avatar-preview">
-                  <img class="image" *ngIf="imageResponseAll[1] != null" src="http://phpstack-304562-945735.cloudwaysapps.com/crm/upload/gallery/{{imageResponseAll[1]}}" alt="" srcset="">
+                  <img class="image" *ngIf="imageResponseAll[1] != null" src="{{imagepath[01] + imageResponseAll[1]}}" alt="" srcset="">
                 </div>
               </div>
 
-              <div class="avatar-upload">
-                <div class="avatar-edit" (click)="getAllImages(2)">
+              <div class="avatar-upload" (click)="getAllImages(2)">
+                <div class="avatar-edit">
                   <input type='button' id="imageUploadc" />
                   <label for="imageUpload">+</label>
                 </div>
                 <div class="avatar-preview">
-                  <img class="image" *ngIf="imageResponseAll[2] != null" src="http://phpstack-304562-945735.cloudwaysapps.com/crm/upload/gallery/{{imageResponseAll[2]}}" alt="" srcset="">
+                  <img class="image" *ngIf="imageResponseAll[2] != null" src="{{imagepath[2] + imageResponseAll[2]}}" alt="" srcset="">
                 </div>
               </div>
 
-              <div class="avatar-upload">
-                <div class="avatar-edit" (click)="getAllImages(3)">
+              <div class="avatar-upload" (click)="getAllImages(3)">
+                <div class="avatar-edit">
                   <input type='button' id="imageUploadd" />
                   <label for="imageUpload">+</label>
                 </div>
                 <div class="avatar-preview">
-                  <img class="image" *ngIf="imageResponseAll[3] != null" src="http://phpstack-304562-945735.cloudwaysapps.com/crm/upload/gallery/{{imageResponseAll[3]}}" alt="" srcset="">
+                  <img class="image" *ngIf="imageResponseAll[3] != null" src="{{imagepath[3] + imageResponseAll[3]}}" alt="" srcset="">
                 </div>
               </div>
 
-              <div class="avatar-upload">
-                <div class="avatar-edit" (click)="getAllImages(4)">
+              <div class="avatar-upload" (click)="getAllImages(4)">
+                <div class="avatar-edit">
                   <input type='button' id="imageUploade" />
                   <label for="imageUpload">+</label>
                 </div>
                 <div class="avatar-preview">
-                  <img class="image" *ngIf="imageResponseAll[4] != null" src="http://phpstack-304562-945735.cloudwaysapps.com/crm/upload/gallery/{{imageResponseAll[4]}}" alt="" srcset="">
+                  <img class="image" *ngIf="imageResponseAll[4] != null" src="{{imagepath[4] + imageResponseAll[4]}}" alt="" srcset="">
                 </div>
               </div>
 

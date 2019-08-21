@@ -141,9 +141,9 @@ export class AddproductsComponent implements OnInit {
       res => {
         if(res.status == true) {
           this.brand = res.data;
-          console.log(this.brand);
+          //console.log(this.brand);
         } else {
-          this.brand = res.message;
+          //this.brand = res.message;
           console.log("No response");
         }
       });
@@ -155,9 +155,9 @@ export class AddproductsComponent implements OnInit {
         if(res.status == true) {
           this.category = res.data;
           this.new_category = res.data;
-          console.log(this.category);
+          //console.log(this.category);
         } else {
-          this.category = res.message;
+          //this.category = res.message;
           console.log("No response");
         }
       });
@@ -187,8 +187,7 @@ export class AddproductsComponent implements OnInit {
         j++;
       }
     }
-  
-    console.log(this.new_category);
+    //console.log(this.new_category);
   }
 
   getImages() {
