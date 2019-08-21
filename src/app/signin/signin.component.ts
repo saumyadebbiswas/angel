@@ -3,7 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/data.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { NavController, Platform, AlertController, MenuController } from '@ionic/angular';
+import { NavController, Platform, AlertController, MenuController, LoadingController } from '@ionic/angular';
 import { empty } from 'rxjs';
 import { Events } from '@ionic/angular';
 
@@ -25,7 +25,8 @@ export class SigninComponent implements OnInit {
     private router: Router, 
     private data: DataService,
     public alertCtrl: AlertController,
-    public events: Events
+    public events: Events,
+    public loadingController: LoadingController
   ) { 
     if(localStorage.getItem("sess_staff_name") !== null && localStorage.getItem("sess_staff_name") !== "") {
       this.router.navigate(['/dashboard']);
@@ -45,6 +46,11 @@ export class SigninComponent implements OnInit {
   }
 
   async onSubmit() {
+    const loading = await this.loadingController.create({
+      message: 'Please wait...'
+    });
+    this.presentLoading(loading);
+
     this.email = this.signinForm.get('email').value;
     this.password = this.signinForm.get('password').value;
 
@@ -84,16 +90,28 @@ export class SigninComponent implements OnInit {
           }          
       });
     } else {
-      alert("Enter full credentials!");
-      /*const alert = await this.alertCtrl.create({
-        header: 'Wrong credentials!',
-        message: 'Please enter corrent email id and password!',
+      //alert("Enter full credentials!");
+      const alert = await this.alertCtrl.create({
+        header: 'Error!',
+        message: 'Enter full credentials!',
         buttons: ['OK']
         });
-        alert.present();*/
+      alert.present();
 
-        console.log("Wrong credentials!");
+      //console.log("Wrong credentials!");
     }
+    
+    this.hideLoader();
+  }
+
+  async presentLoading(loading) {
+    return await loading.present();
+  }
+  
+  hideLoader() {
+    setTimeout(() => {
+      this.loadingController.dismiss();
+    });
   }
 
 }
