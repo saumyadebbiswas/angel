@@ -48,7 +48,7 @@ export class ProducteditComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.product_id = this.route.snapshot.paramMap.get('id');
+    // this.product_id = this.route.snapshot.paramMap.get('id');
 
     this.productEditForm = new FormGroup({
       name: new FormControl(),
@@ -62,6 +62,13 @@ export class ProducteditComponent implements OnInit {
       color_list: new FormControl()
     });
     
+    // this.showBrand();
+    // this.showCategory();
+    // //this.showColors();
+  }
+
+  ionViewWillEnter(){
+    this.product_id = this.route.snapshot.paramMap.get('id');
     
     this.showBrand();
     this.showCategory();
@@ -128,7 +135,7 @@ export class ProducteditComponent implements OnInit {
               message: res.message,
               buttons: ['OK']
               });
-              alert.present();
+            alert.present();
           }          
       });
     }
