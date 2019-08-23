@@ -97,7 +97,7 @@ export class ProductdetailsComponent implements OnInit {
           }
           //console.log('show product called.........: ', this.allimages);
         } else {
-          this.product = res.message;
+          //this.product = res.message;
           console.log("No response");
         }
       });
