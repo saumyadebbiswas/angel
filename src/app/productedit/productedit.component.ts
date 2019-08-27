@@ -90,9 +90,9 @@ export class ProducteditComponent implements OnInit {
     this.min_order = this.productEditForm.get('min_order').value.trim();
     this.color_list = this.productEditForm.get('color_list').value;
 
-    if(this.imageResponse[0]==null){
-      this.imageResponse[0] = "";
-    }
+    // if(this.imageResponse[0]==null){
+    //   this.imageResponse[0] = "";
+    // }
 
     if(this.product_id == null || this.product_id == "" || this.name == "" || 
     this.design_num == "" || this.detail == "" || this.brand_id == null || 
@@ -100,10 +100,9 @@ export class ProducteditComponent implements OnInit {
     this.min_order == "" || this.color_list == "" || this.color_list == null) {
       alert('Enter full credentials!');
     } else {
-      console.log('color_list before........', this.color_list);
+      //console.log('color_list before........', this.color_list);
       this.color_list = this.tagArrayToString(this.color_list);
-
-      console.log('color_list after........', this.color_list);
+      //console.log('color_list after........', this.color_list);
 
       let sendData = {
         id: this.product_id,
@@ -116,17 +115,17 @@ export class ProducteditComponent implements OnInit {
         quantity_per_box: this.qty_per_box,
         min_order_box_quantity: this.min_order,
         number_of_color: this.color_list,
-        image_name: this.image_name,
-        imagefile: this.imageResponse[0],
+        //image_name: this.image_name,
+        //imagefile: this.imageResponse[0],
         imagefileall: this.imageResponseAll,
         allimages: this.allimages
       }
+      //console.log(sendData);
 
-      console.log(sendData);
       this.data.productEdit(sendData).subscribe(
         async res => {  
           if(res.status == true) {
-            console.log(res);
+            //console.log(res);
             // this.router.navigate(['/products/'+this.product_id]); 
             this.router.navigateByUrl('/products/'+this.product_id); 
           } else {
@@ -181,7 +180,7 @@ export class ProducteditComponent implements OnInit {
           });
 
           //this.set_color_list = res.data.pro_num_of_color.split(',');
-          this.image_name = res.data.pro_image_name;
+          //this.image_name = res.data.pro_image_name;
 
           let productimages = res.data.productimages;
           productimages.forEach(element => {
@@ -262,22 +261,22 @@ export class ProducteditComponent implements OnInit {
     //console.log(this.new_category);
   }
 
-  getImages() {
-    let options = {
-      maximumImagesCount: 1,
-      width: 200,
-      quality: 25,
-      outputType: 1
-    };
-    this.imageResponse = [];
-    this.imagePicker.getPictures(options).then((results) => {
-      for (var i = 0; i < results.length; i++) {
-        this.imageResponse.push('data:image/jpeg;base64,' + results[i]);
-      }
-    }, (err) => {
-      alert(err);
-    });
-  }
+  // getImages() {
+  //   let options = {
+  //     maximumImagesCount: 1,
+  //     width: 200,
+  //     quality: 25,
+  //     outputType: 1
+  //   };
+  //   this.imageResponse = [];
+  //   this.imagePicker.getPictures(options).then((results) => {
+  //     for (var i = 0; i < results.length; i++) {
+  //       this.imageResponse.push('data:image/jpeg;base64,' + results[i]);
+  //     }
+  //   }, (err) => {
+  //     alert(err);
+  //   });
+  // }
 
   getAllImages(index) {
     //console.log('all index.........', index);

@@ -92,4 +92,8 @@ export class DataService {
   orderItemList(input:any): Observable<any> {
     return this.http.get<any>('http://phpstack-304562-945735.cloudwaysapps.com/crm/api/orders/all-items/'+input.order_id, {headers: this.requestHeader})
   }
+
+  orderStatusUpdate(input:any): Observable<any> {
+    return this.http.put<any>('http://phpstack-304562-945735.cloudwaysapps.com/crm/api/orders/status-update', input, {headers: this.requestHeader})
+  }
 }

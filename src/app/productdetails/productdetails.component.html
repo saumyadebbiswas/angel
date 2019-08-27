@@ -13,9 +13,9 @@
   <div class="container">
 
     <div class="row product-box">
-      <img *ngIf="allimages.length == 0" src="http://phpstack-304562-945735.cloudwaysapps.com/crm/upload/product/{{product.pro_image_name}}" alt="{{product.pro_name}}" />
+      <!-- <img *ngIf="allimages.length == 0" src="http://phpstack-304562-945735.cloudwaysapps.com/crm/upload/product/{{product.pro_image_name}}" alt="{{product.pro_name}}" /> -->
       
-      <ion-slides *ngIf="allimages.length > 0" pager="true" [options]="slideOptsOne" #slideWithNav (ionSlideDidChange)="SlideDidChange(sliderOne,slideWithNav)">
+      <ion-slides *ngIf="allimages.length > 0" pager="true" [options]="slideOptsOne" #slideWithNav (ionSlideDidChange)="SlideDidChange(slideWithNav)">
         <ion-slide *ngFor="let image of allimages">
           <img class="slide-image" src="http://phpstack-304562-945735.cloudwaysapps.com/crm/upload/gallery/{{image}}" alt="" />
         </ion-slide>

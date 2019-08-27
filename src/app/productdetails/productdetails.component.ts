@@ -21,36 +21,26 @@ export class ProductdetailsComponent implements OnInit {
   isEndSlide: any = false;
 
   //Method called when slide is changed by drag or navigation
-  SlideDidChange(object, slideView) {
-    this.checkIfNavDisabled(object, slideView);
+  SlideDidChange(slideView) {
+    this.checkIfNavDisabled(slideView);
   }
  
   //Call methods to check if slide is first or last to enable disbale navigation  
-  checkIfNavDisabled(object, slideView) {
-    this.checkisBeginning(object, slideView);
-    this.checkisEnd(object, slideView);
+  checkIfNavDisabled(slideView) {
+    this.checkisBeginning(slideView);
+    this.checkisEnd(slideView);
   }
  
-  checkisBeginning(object, slideView) {
+  checkisBeginning(slideView) {
     slideView.isBeginning().then((istrue) => {
       this.isBeginningSlide = istrue;
     });
   }
-  checkisEnd(object, slideView) {
+  checkisEnd(slideView) {
     slideView.isEnd().then((istrue) => {
       this.isEndSlide = istrue;
     });
   }
-  
-  // sliderConfig = {
-  //   slidesPerView: 1.6,
-  //   spaceBetween: 10,
-  //   centeredSlides: true
-  // };
-
-  // slidesDidLoad(slides) {
-  //   slides.startAutoplay();
-  // }
 
   product_id: string;
   product:any = [];

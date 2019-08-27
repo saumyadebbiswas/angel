@@ -105,4 +105,33 @@
     font-size: 10px;
     text-align: center;
   }
+
+  .select-product-row{
+      display: flex;
+  }
+  
+.frm{
+    margin-bottom: 0.1rem!important;
+}
+.frm .item-inner{
+    border-bottom: 2px solid #180d52!important;
+    // padding-left: 10px;
+}
+.pad-none{
+    padding: 0;
+}
+
+  .edit-btn{
+      background: #ff8a65!important;
+      color: #fff;
+      width: 100%;
+      padding: 1rem 0;
+  }
+  
+  .cancel-btn{
+      background: #31959c!important;
+      color: #fff;
+      width: 100%;
+      padding: 1rem 0;
+  }
   

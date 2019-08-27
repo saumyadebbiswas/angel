@@ -37,6 +37,21 @@
 
     </div>
 
+    <div *ngIf="order_status == '1' || order_status == '2'" class="select-product-row">
+      <ion-item class="col-6 form-group frm pad-none">
+        <button *ngIf="order_status == '1'" type="button" size="large" expand="block" class="btn edit-btn" (click)="changeStatus(2)">Processing</button>
+        <button *ngIf="order_status == '2'" type="button" size="large" expand="block" class="btn edit-btn" (click)="changeStatus(3)">Delivered</button>
+      </ion-item>
+    
+      <ion-item class="col-6 form-group frm pad-none">
+        <button type="button" size="large" expand="block" class="btn edit-btn" (click)="changeStatus(-1)">Cancel</button>
+      </ion-item>
+    </div>
+
+    <div padding>
+      <button type="button" size="large" expand="block" class="btn cancel-btn" (click)="clickBack()">Back</button>
+    </div>
+
   </div>
 </ion-content>
 

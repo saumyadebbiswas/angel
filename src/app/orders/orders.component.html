@@ -11,14 +11,26 @@
 
 <ion-content>
   <div class="container">
+    <ion-item class="form-group frm">
+      <ion-select class="pad-none brand-drop" (ionChange)="onChange($event)" placeholder="Status Type">
+          <ion-select-option [value]="-1" selected="true">All</ion-select-option>
+          <ion-select-option [value]="1">Pending</ion-select-option>
+          <ion-select-option [value]="2">Processing</ion-select-option>
+          <ion-select-option [value]="3">Delivered</ion-select-option>
+        <ion-select-option [value]="0">Cancelled</ion-select-option>
+      </ion-select>
+    </ion-item>
+
     <div class="row product-box" *ngFor="let order of orders">
 
       <div class="col-9 product-description">
         <h4>Order ID: {{order.order_id}}</h4>
         <p>Customer Name: {{order.cust_name}}</p>
         <p>Date: {{order.order_created | date: "MMM dd, yyyy hh:mm a"}}</p>
-        <p *ngIf="order.order_status == 1">Status: Pending</p>
         <p *ngIf="order.order_status == 0">Status: Cancelled</p>
+        <p *ngIf="order.order_status == 1">Status: Pending</p>
+        <p *ngIf="order.order_status == 2">Status: Processing</p>
+        <p *ngIf="order.order_status == 3">Status: Delivered</p>
       </div>
 
       <div class="col-3 detail-btn" (click)="moveOrderDetails(order.order_id)">

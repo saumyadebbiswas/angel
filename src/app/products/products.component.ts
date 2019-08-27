@@ -29,7 +29,7 @@ export class ProductsComponent implements OnInit {
       res => {
         if(res.status == true){
           this.products = res.data;
-          //console.log(this.products);
+          console.log(this.products);
         } else {
           console.log("No response");
         }

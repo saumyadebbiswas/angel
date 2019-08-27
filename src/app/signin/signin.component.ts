@@ -101,17 +101,11 @@ export class SigninComponent implements OnInit {
       //console.log("Wrong credentials!");
     }
     
-    this.hideLoader();
+    this.loadingController.dismiss();
   }
 
   async presentLoading(loading) {
     return await loading.present();
-  }
-  
-  hideLoader() {
-    setTimeout(() => {
-      this.loadingController.dismiss();
-    });
   }
 
 }
