@@ -12,7 +12,9 @@ export class OrderdetailsComponent implements OnInit {
 
   order_id: string;
   order_items: any = [];
-  order_status: string;
+  order_details: any = [];
+  total_amount:any = 0;
+  total_item:any = 0;
 
   constructor(
     private router: Router,
@@ -45,9 +47,19 @@ export class OrderdetailsComponent implements OnInit {
     this.data.orderItemList(sendData).subscribe(
       res => {
         if(res.status == true){
-          this.order_items = res.data;
-          this.order_status = res.data[0].order_status;
-          //console.log('order_items:....... ', this.order_items);
+          this.order_items = res.data.order_items;
+          this.order_details = res.data[0];
+          
+          let amount = 0;
+          let items = 0;
+          this.order_items.forEach(element => {
+            amount += (element.oi_quantity * element.oi_old_price);
+            items += parseInt(element.oi_quantity);
+          });
+
+          this.total_amount = amount;
+          this.total_item = items;
+          //console.log('res.data:....... ', res.data);
         } else {
           console.log("No response");
         }

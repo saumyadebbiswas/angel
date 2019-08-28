@@ -11,12 +11,29 @@
 
 <ion-content>
   <div class="container">
+
+    <div padding class="profile-box">
+      <h5>Total Amount: <span class="price">₹{{total_amount}}</span></h5>
+      <h5>Total Items: <span class="price">{{total_item}} Pieces</span></h5>
+      
+      <p>Name: {{order_details.order_name}}</p>
+      <p>Email: {{order_details.order_email}}</p>
+      <p>Phone: {{order_details.order_phone}}</p>
+      <p>
+        Address: {{order_details.order_address}}
+        <span *ngIf="order_details.order_address2 != ''">, {{order_details.order_address2}}</span>
+        , {{order_details.order_city}}, {{order_details.order_state}}, {{order_details.order_pin}}
+      </p>
+      <p>Order Date: {{order_details.order_created | date: "MMM dd, yyyy hh:mm a"}}</p>
+      <p *ngIf="order_details.order_payment_type == '1'">Payment Type: Credit</p>
+      <p *ngIf="order_details.order_payment_type == '2'">Payment Type: Cash</p>
+    </div>
+    <h5 class="ex-bor">Order Items</h5>
     <div class="row product-box" *ngFor="let order_item of order_items">
 
       <div class="col-8 product-description">
         <h4>{{order_item.pro_name}}</h4>
         <p>Design ID: {{order_item.pro_design_num}}</p>
-        <p>Order Date: {{order_item.order_created | date: "MMM dd, yyyy hh:mm a"}}</p>
         <div class="price-details">
           <p class="qty-price">
             <strong> Qty:</strong> <span>{{order_item.oi_quantity}}</span>
@@ -25,11 +42,10 @@
             <strong>Price:</strong> <span>₹{{order_item.oi_old_price}}/Piece</span>
           </p>
         </div>
-       
       </div>
 
       <div class="col-4 detail-btn">
-        <img src="http://phpstack-304562-945735.cloudwaysapps.com/crm/upload/product/{{order_item.pro_image_name}}" alt="{{order_item.pro_name}}" />
+        <img src="http://phpstack-304562-945735.cloudwaysapps.com/crm/upload/gallery/{{order_item.pro_image_name}}" alt="{{order_item.pro_name}}" />
         <p class="total-price">
           <strong>Total Price:</strong> <span>₹{{order_item.oi_quantity * order_item.oi_old_price}}</span>
         </p>
@@ -37,15 +53,15 @@
 
     </div>
 
-    <div *ngIf="order_status == '1' || order_status == '2'" class="select-product-row">
-      <ion-item class="col-6 form-group frm pad-none">
-        <button *ngIf="order_status == '1'" type="button" size="large" expand="block" class="btn edit-btn" (click)="changeStatus(2)">Processing</button>
-        <button *ngIf="order_status == '2'" type="button" size="large" expand="block" class="btn edit-btn" (click)="changeStatus(3)">Delivered</button>
-      </ion-item>
+    <div *ngIf="order_details.order_status == '1' || order_details.order_status == '2'" class="select-product-row">
+      <div class="col-6 form-group">
+        <button *ngIf="order_details.order_status == '1'" type="button" size="large" expand="block" class="btn edit-btn" (click)="changeStatus(2)">Processing</button>
+        <button *ngIf="order_details.order_status == '2'" type="button" size="large" expand="block" class="btn edit-btn" (click)="changeStatus(3)">Delivered</button>
+      </div>
     
-      <ion-item class="col-6 form-group frm pad-none">
+      <div class="col-6 form-group">
         <button type="button" size="large" expand="block" class="btn edit-btn" (click)="changeStatus(-1)">Cancel</button>
-      </ion-item>
+      </div>
     </div>
 
     <div padding>
