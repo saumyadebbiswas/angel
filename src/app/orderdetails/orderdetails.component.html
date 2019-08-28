@@ -13,7 +13,7 @@
   <div class="container">
 
     <div padding class="profile-box">
-      <h5>Total Amount: <span class="price">₹{{total_amount}}</span></h5>
+      <h5>Total Amount: <span class="price">{{total_amount | currency:'INR':true:'1.2-2'}}</span></h5>
       <h5>Total Items: <span class="price">{{total_item}} Pieces</span></h5>
       
       <p>Name: {{order_details.order_name}}</p>
@@ -39,7 +39,7 @@
             <strong> Qty:</strong> <span>{{order_item.oi_quantity}}</span>
           </p>
           <p>
-            <strong>Price:</strong> <span>₹{{order_item.oi_old_price}}/Piece</span>
+            <strong>Price:</strong> <span>{{order_item.oi_old_price | currency:'INR':true:'1.2-2'}}/Piece</span>
           </p>
         </div>
       </div>
@@ -47,7 +47,7 @@
       <div class="col-4 detail-btn">
         <img src="http://phpstack-304562-945735.cloudwaysapps.com/crm/upload/gallery/{{order_item.pro_image_name}}" alt="{{order_item.pro_name}}" />
         <p class="total-price">
-          <strong>Total Price:</strong> <span>₹{{order_item.oi_quantity * order_item.oi_old_price}}</span>
+          <strong>Total Price:</strong> <span>{{order_item.oi_quantity * order_item.pro_qty_per_box * order_item.oi_old_price | currency:'INR':true:'1.2-2'}}</span>
         </p>
       </div>
 

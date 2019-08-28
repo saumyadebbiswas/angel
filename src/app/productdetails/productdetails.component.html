@@ -28,7 +28,7 @@
         <p>Colors: {{product.pro_num_of_color}} </p>
         <p>Order Terms</p>
         <p>Minimum Order Quantity {{product.pro_min_order_box_qty}} Boxes</p>
-        <p class="price">₹{{product.pro_price_per_piece}}/Piece | Quantity Per Box: 6 Pieces</p>
+        <p class="price">{{product.pro_price_per_piece | currency:'INR':true:'1.2-2'}}/Piece | Quantity Per Box: 6 Pieces</p>
         <div class="edit" (click)="moveProductEdit(product.pro_id)">
           <span>Update</span>
         </div>

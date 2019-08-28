@@ -15,7 +15,7 @@
       <div class="row product-box" *ngIf="staff.role != '0'">
         <div class="col-1"></div>
         
-        <div class="col-8 product-description">
+        <div class="col-8 product-description" (click)="moveStaffEdit(staff.id)">
           <h4>{{staff.first_name}} {{staff.last_name}}</h4>
           <p><i class="fa fa-envelope" aria-hidden="true"></i> {{staff.email}}</p>
           <p><i class="fa fa-phone" aria-hidden="true"></i> {{staff.phone}}</p>

@@ -26,14 +26,14 @@
     <div class="row product-box" *ngFor="let product of products">
 
       <div class="col-3 product-img">
-        <img src="http://phpstack-304562-945735.cloudwaysapps.com/crm/upload/gallery/{{product.pro_image_name}}" alt="{{product.pro_name}}" />
+        <img src="http://phpstack-304562-945735.cloudwaysapps.com/crm/upload/gallery/{{product.pro_image_name}}" alt="{{product.pro_name}}" (click)="moveProductDetails(product.pro_id)" />
       </div>
 
       <div class="col-6 product-description">
         <h4>Design ID: {{product.pro_design_num}}</h4>
         <p>{{product.pro_name}}</p>
         <!--<p>Description: {{product.pro_description | slice:0:30}}...</p>-->
-        <p>Price: ₹{{product.pro_price_per_piece}} {{product.pro_qty_per_box}}piece/Box</p>
+        <p>Price: {{product.pro_price_per_piece | currency:'INR':true:'1.2-2'}} {{product.pro_qty_per_box}}piece/Box</p>
       </div>
 
       <div class="col-3 detail-btn" (click)="moveProductDetails(product.pro_id)">

@@ -53,7 +53,7 @@ export class OrderdetailsComponent implements OnInit {
           let amount = 0;
           let items = 0;
           this.order_items.forEach(element => {
-            amount += (element.oi_quantity * element.oi_old_price);
+            amount += (element.oi_quantity * element.pro_qty_per_box * element.oi_old_price);
             items += parseInt(element.oi_quantity);
           });
 
