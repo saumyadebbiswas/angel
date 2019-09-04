@@ -30,6 +30,7 @@ import { StaffeditComponent } from './staffedit/staffedit.component';
 import { AddstaffComponent } from './addstaff/addstaff.component';
 import { OrdersComponent } from './orders/orders.component';
 import { OrderdetailsComponent } from './orderdetails/orderdetails.component';
+import { DatePicker } from '@ionic-native/date-picker/ngx';
 
 @NgModule({
   declarations: [
@@ -64,8 +65,9 @@ import { OrderdetailsComponent } from './orderdetails/orderdetails.component';
   ],
   providers: [
     StatusBar,
-    SplashScreen,,
+    SplashScreen,
     ImagePicker,
+    DatePicker,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

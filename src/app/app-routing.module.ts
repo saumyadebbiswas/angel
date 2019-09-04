@@ -46,7 +46,7 @@ const routes: Routes = [
   { path: 'staffs', component: StaffsComponent },
   { path: 'staff/edit/:id', component: StaffeditComponent },
   { path: 'add-staff', component: AddstaffComponent },
-  { path: 'edit-profile', component: EditprofileComponent },
+  { path: 'editprofile', component: EditprofileComponent },
   { path: 'orders', component: OrdersComponent },
   { path: 'orders/:id', component: OrderdetailsComponent }
 ];

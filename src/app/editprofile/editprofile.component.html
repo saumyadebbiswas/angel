@@ -1,3 +1,71 @@
-<p>
-  editprofile works!
-</p>
+<ion-header>
+  <ion-toolbar class="my-toolbar">
+    <ion-buttons slot="start">
+      <ion-menu-button color="light"></ion-menu-button>
+    </ion-buttons>
+    <ion-title color="light">
+      Edit Profile
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row justify-content-center>
+      <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+        <div class="user-profile">
+          <div class="profile-img">
+            <img *ngIf="image_name == null" src="http://phpstack-304562-945735.cloudwaysapps.com/crm/upload/male-circle-128.png" alt="user_image" width="100px" (click)="getImages()">
+
+            <img *ngIf="image_name != null" src="{{image_path + image_name}}" alt="user_image" width="100px" (click)="getImages()">
+           </div>
+           <div class="profile-info">
+            <h3>{{customer_name}}</h3>
+            <p>{{customer_city}}</p>
+          </div>
+        </div>
+
+        
+
+        <form  [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+          <div padding class="profile-box">
+            <ion-item class="form-group frm">
+              <span><i class="fa fa-user"></i></span>
+              <ion-input type="text" formControlName="name" class="info-frm" id="Name" placeholder="First Name"></ion-input>
+            </ion-item>
+
+            <ion-item class="form-group frm">
+              <span><i class="fa fa-user"></i></span>
+              <ion-input type="text" formControlName="last_name" class="info-frm" id="lastName" placeholder="Last Name"></ion-input>
+            </ion-item>
+
+            <ion-item class="form-group frm">
+              <span><i class="fa fa-envelope"></i></span>
+              <ion-input type="text" formControlName="email" class="info-frm" id="email" placeholder="Email ID"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <span><i class="fa fa-calendar"></i></span>
+              <ion-datetime formControlName="birthday" class="info-frm" displayFormat="MMM DD, YYYY" placeholder="Date of Birth"></ion-datetime>
+            </ion-item>
+    
+            <ion-item class="form-group frm">
+              <span><i class="fa fa-home"></i></span>
+              <ion-input type="text" formControlName="city" class="info-frm" id="address" placeholder="City" ></ion-input>
+            </ion-item>
+
+            <ion-item class="form-group frm">
+              <span><i class="fa fa-phone"></i></span>
+              <ion-input type="text" formControlName="phone" class="info-frm" id="phone" placeholder="Phone Number" ></ion-input>
+            </ion-item>
+          </div>
+    
+          <div padding>
+            <button type="submit" size="large" expand="block" class="btn sing-btn">Save Changes</button>
+          </div>
+        </form>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

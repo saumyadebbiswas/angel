@@ -96,4 +96,8 @@ export class DataService {
   orderStatusUpdate(input:any): Observable<any> {
     return this.http.put<any>('http://phpstack-304562-945735.cloudwaysapps.com/crm/api/orders/status-update', input, {headers: this.requestHeader})
   }
+
+  profileEdit(input:any): Observable<any> {
+    return this.http.put<any>('http://phpstack-304562-945735.cloudwaysapps.com/crm/api/authentication/edit', input, {headers: this.requestHeader})
+  }
 }

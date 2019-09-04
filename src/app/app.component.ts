@@ -88,5 +88,9 @@ export class AppComponent {
     this.menuCtrl.close();
     this.router.navigate(['/dashboard']);
   }
+  moveProfile() {
+    this.menuCtrl.close();
+    this.router.navigate(['/editprofile']);
+  }
     
 }
