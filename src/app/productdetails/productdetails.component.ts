@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../data.service';
 import { empty } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-productdetails',
@@ -36,6 +38,7 @@ export class ProductdetailsComponent implements OnInit {
       this.isBeginningSlide = istrue;
     });
   }
+
   checkisEnd(slideView) {
     slideView.isEnd().then((istrue) => {
       this.isEndSlide = istrue;
@@ -49,7 +52,9 @@ export class ProductdetailsComponent implements OnInit {
   constructor(
     private router: Router, 
     private route:ActivatedRoute, 
-    private data:DataService
+    private data:DataService,
+    private modalService: NgbModal, 
+    public alertCtrl: AlertController
   ) { }
 
   ngOnInit() {
@@ -95,6 +100,29 @@ export class ProductdetailsComponent implements OnInit {
   
   moveProductEdit(product_id) {
     this.router.navigate(['/product/edit/'+product_id]);
+  }  
+
+  showModal(mediumModalPayment) {
+    this.modalService.open( mediumModalPayment );
+  } 
+
+  deleteProduct() {
+    this.modalService.dismissAll();
+    
+    this.data.productDelete(this.product_id).subscribe(
+      async res => {
+        console.log('Response delete...', res);
+        if(res.status == true) {
+          this.router.navigate(['/products']); 
+        } else {
+          const alert = await this.alertCtrl.create({
+            header: 'Error!',
+            message: res.message,
+            buttons: ['OK']
+            });
+          alert.present();
+        }
+      });
   }
 
 }

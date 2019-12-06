@@ -32,7 +32,22 @@
         <div class="edit" (click)="moveProductEdit(product.pro_id)">
           <span>Update</span>
         </div>
+        <div class="edit" (click)="showModal(modalDelete)">
+          <span>Delete</span>
+        </div>
       </div>
     </div>
   </div>
 </ion-content>
+
+<ng-template #modalDelete let-modal class="modal fade" id="exampleModal-2" aria-labelledby="exampleModalLabel-2">
+  <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirm Delete?</h5>
+      </div>
+      <div class="modal-footer">
+          <button type="button" (click)="deleteProduct()" class="btn btn-delete">Delete</button>
+          <button type="button" class="btn btn-light" data-dismiss="modal" (click)="modal.close()">Cancel</button>
+      </div>
+  </div>
+</ng-template>

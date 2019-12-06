@@ -65,6 +65,10 @@ export class DataService {
     return this.http.post<any>('http://phpstack-304562-945735.cloudwaysapps.com/crm/api/product/insert', input, {headers: this.requestHeader})
   }
 
+  productDelete(product_id:any): Observable<any> {
+    return this.http.delete<any>('http://phpstack-304562-945735.cloudwaysapps.com/crm/api/product/delete/'+product_id, {headers: this.requestHeader})
+  }
+
   colorList(): Observable<any> {
     return this.http.get<any>('http://phpstack-304562-945735.cloudwaysapps.com/crm/api/color/details', {headers: this.requestHeader})
   }

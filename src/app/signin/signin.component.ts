@@ -19,6 +19,7 @@ export class SigninComponent implements OnInit {
   email: String;
   password: String;
   requestHeader: any = new HttpHeaders();
+  subscription:any;
 
   constructor(
     public menuCtrl: MenuController,
@@ -26,16 +27,26 @@ export class SigninComponent implements OnInit {
     private data: DataService,
     public alertCtrl: AlertController,
     public events: Events,
-    public loadingController: LoadingController
-  ) { 
+    public loadingController: LoadingController,
+    private platform: Platform
+  ) { }
+
+  ionViewWillEnter(){ 
     if(localStorage.getItem("sess_staff_name") !== null && localStorage.getItem("sess_staff_name") !== "") {
       this.router.navigate(['/dashboard']);
     }
 
     this.menuCtrl.enable(false);
-    
-    //this.requestHeader.append("Accept", 'application/json');
-    this.requestHeader.append('Content-Type', 'application/json'); 
+  }
+
+  ionViewDidEnter(){ 
+    this.subscription = this.platform.backButton.subscribe(()=>{ 
+      navigator['app'].exitApp(); 
+    }); 
+  } 
+
+  ionViewWillLeave(){ 
+    this.subscription.unsubscribe();
   }
 
   ngOnInit() {

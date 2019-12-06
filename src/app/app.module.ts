@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -57,6 +58,7 @@ import { DatePicker } from '@ionic-native/date-picker/ngx';
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
+    NgbModule, 
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,

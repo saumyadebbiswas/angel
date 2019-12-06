@@ -180,14 +180,12 @@ export class AddproductsComponent implements OnInit {
     let brand_id = $event.target.value;
     this.new_category = [];
     
-    let j = 0;
-    for(let i=0; i<this.category.length; i++){
-      if(this.category[i].cat_brand_id == brand_id){
-        this.new_category[j] = this.category[i];
-        j++;
+    this.category.forEach(element => {
+      if(element.cat_brand_id == brand_id){
+        this.new_category.push(element);
       }
-    }
-    //console.log(this.new_category);
+    });
+    console.log(this.new_category);
   }
 
   // getImages() {

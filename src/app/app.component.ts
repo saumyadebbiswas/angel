@@ -45,16 +45,13 @@ export class AppComponent {
   ) {
     this.initializeApp();
 
-    if(localStorage.getItem("sess_staff_name") === null || localStorage.getItem("sess_staff_name") === "") {
-      this.router.navigate(['/signin']);
-    }
-
-    //this.sess_staff_id = localStorage.getItem("sess_staff_id"); 
+    this.sess_staff_name = localStorage.getItem("sess_staff_name");
+    this.sess_staff_phone = localStorage.getItem("sess_staff_phone");
 
     events.subscribe('userLogin', (data) => {
       // user and time are the same arguments passed in `events.publish(user, time)`
-      console.log('event data :.............', data);
-      this.getlocalvalue();
+      this.sess_staff_name = localStorage.getItem("sess_staff_name");
+      this.sess_staff_phone = localStorage.getItem("sess_staff_phone");
     });
   }
 

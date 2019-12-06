@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuController } from '@ionic/angular';
+import { MenuController, Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,18 +8,36 @@ import { MenuController } from '@ionic/angular';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
+
   sess_staff_role: String;
+  subscription:any;
 
   constructor(
     public menuCtrl: MenuController,
-    private router: Router
+    private router: Router,
+    private platform: Platform
   ) { 
     this.sess_staff_role = localStorage.getItem("sess_staff_role");
 
     this.menuCtrl.enable(true);
   }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ionViewWillEnter(){ 
+    if(localStorage.getItem("sess_staff_name") === null || localStorage.getItem("sess_staff_name") === "") {
+      this.router.navigate(['/signin']);
+    }
+  }
+
+  ionViewDidEnter(){ 
+    this.subscription = this.platform.backButton.subscribe(()=>{ 
+      navigator['app'].exitApp(); 
+    }); 
+  } 
+
+  ionViewWillLeave(){ 
+    this.subscription.unsubscribe();
   }
 
   moveOrders() {
