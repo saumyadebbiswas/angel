@@ -73,14 +73,6 @@ export class AppComponent {
     this.router.navigate(['/signin']);
   }
 
-  getlocalvalue(){
-    // setTimeout(() => {
-      this.sess_staff_name = localStorage.getItem("sess_staff_name");
-      this.sess_staff_phone = localStorage.getItem("sess_staff_phone");
-    // }, 1000);
-    console.log('get local value called..................');    
-  }
-
   moveDasboard() {
     this.menuCtrl.close();
     this.router.navigate(['/dashboard']);
