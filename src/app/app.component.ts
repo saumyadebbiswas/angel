@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-
 import { Platform, MenuController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
@@ -16,24 +15,6 @@ export class AppComponent {
   sess_staff_id:any;
   sess_staff_name:any;
   sess_staff_phone:any;
-
-  public appPages = [
-    {
-      title: 'Sign In',
-      url: '/signin',
-      icon: 'log-in'
-    },
-    {
-      title: 'Dashboard',
-      url: '/dashboard',
-      icon: 'home'
-    },
-    {
-      title: 'Edit Profile',
-      url: '/edit-profile',
-      icon: 'logo-angular'
-    }
-  ];
 
   constructor(
     public menuCtrl: MenuController,
@@ -77,6 +58,7 @@ export class AppComponent {
     this.menuCtrl.close();
     this.router.navigate(['/dashboard']);
   }
+
   moveProfile() {
     this.menuCtrl.close();
     this.router.navigate(['/editprofile']);
