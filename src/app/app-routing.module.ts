@@ -24,12 +24,6 @@ const routes: Routes = [
     redirectTo: 'signin',
     pathMatch: 'full'
   },
-  {
-    path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
-  },
-  {
-    path: 'list', loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
-  },
   { path: 'signin', component: SigninComponent },
   { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardPageModule) },
   { path: 'brands', component: BrandsComponent },

@@ -73,7 +73,9 @@ export class SigninComponent implements OnInit {
     if(this.email != null && this.password != null) {
 
       this.data.login(sendData).subscribe(
-        async res => {  
+        async res => {
+          this.loadingController.dismiss();
+
           if(res.status == true) {       
             console.log(res);
 
@@ -84,11 +86,7 @@ export class SigninComponent implements OnInit {
 
             this.events.publish('userLogin', JSON.stringify({loggedin: true}));
             this.menuCtrl.enable(true);
-            //this.token = res.token;
-            // console.log(this.token);
-            //localStorage.setItem('token', this.token)
-            // let shareData = { token:this.token };
-            // this.data.changeMessage(JSON.stringify(shareData));
+            
             this.router.navigate(['/dashboard']); 
           } else {
             //alert(res.message);
@@ -101,6 +99,8 @@ export class SigninComponent implements OnInit {
           }          
       });
     } else {
+      this.loadingController.dismiss();
+
       //alert("Enter full credentials!");
       const alert = await this.alertCtrl.create({
         header: 'Error!',
@@ -108,11 +108,7 @@ export class SigninComponent implements OnInit {
         buttons: ['OK']
         });
       alert.present();
-
-      //console.log("Wrong credentials!");
     }
-    
-    this.loadingController.dismiss();
   }
 
   async presentLoading(loading) {
