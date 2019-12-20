@@ -32,6 +32,7 @@ import { AddstaffComponent } from './addstaff/addstaff.component';
 import { OrdersComponent } from './orders/orders.component';
 import { OrderdetailsComponent } from './orderdetails/orderdetails.component';
 import { DatePicker } from '@ionic-native/date-picker/ngx';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { DatePicker } from '@ionic-native/date-picker/ngx';
     StaffeditComponent,
     AddstaffComponent,
     OrdersComponent,
-    OrderdetailsComponent
+    OrderdetailsComponent,
+    ResetPasswordComponent
   ],
   entryComponents: [],
   imports: [

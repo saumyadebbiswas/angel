@@ -17,6 +17,7 @@ import { StaffeditComponent } from './staffedit/staffedit.component';
 import { AddstaffComponent } from './addstaff/addstaff.component';
 import { OrdersComponent } from './orders/orders.component';
 import { OrderdetailsComponent } from './orderdetails/orderdetails.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 const routes: Routes = [
   {
@@ -34,7 +35,6 @@ const routes: Routes = [
   { path: 'add-brand', component: AddbrandComponent },
   { path: 'add-category', component: AddcategoryComponent },
   { path: 'add-product', component: AddproductsComponent },
-  // { path: 'product/:id', component: ProductdetailsComponent },
   { path: 'products/:id', component: ProductdetailsComponent },
   { path: 'product/edit/:id', component: ProducteditComponent },
   { path: 'staffs', component: StaffsComponent },
@@ -42,7 +42,8 @@ const routes: Routes = [
   { path: 'add-staff', component: AddstaffComponent },
   { path: 'editprofile', component: EditprofileComponent },
   { path: 'orders', component: OrdersComponent },
-  { path: 'orders/:id', component: OrderdetailsComponent }
+  { path: 'orders/:id', component: OrderdetailsComponent },
+  { path: 'reset-password', component: ResetPasswordComponent }
 ];
 
 @NgModule({

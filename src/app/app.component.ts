@@ -63,5 +63,10 @@ export class AppComponent {
     this.menuCtrl.close();
     this.router.navigate(['/editprofile']);
   }
+
+  moveResetPassword() {
+    this.menuCtrl.close();
+    this.router.navigate(['/reset-password']);
+  }
     
 }

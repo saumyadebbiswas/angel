@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DataService } from '../data.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-staffedit',
@@ -21,6 +21,8 @@ export class StaffeditComponent implements OnInit {
   lastname: String;
   email: String;
   phone: String;
+  newpassword: string;
+  confpassword: string;
   role: String;
   
   temp_role:any = [];
@@ -29,7 +31,8 @@ export class StaffeditComponent implements OnInit {
     private router: Router, 
     private route:ActivatedRoute,
     private data:DataService,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    public toastController: ToastController
   ) { }
 
   ngOnInit() {
@@ -38,6 +41,8 @@ export class StaffeditComponent implements OnInit {
       lastname: new FormControl(),
       email: new FormControl(),
       phone: new FormControl(),
+      newpassword: new FormControl(),
+      confpassword: new FormControl()
       //role: new FormControl()
     });
 
@@ -51,18 +56,35 @@ export class StaffeditComponent implements OnInit {
     this.router.navigate(['/staffs']);
   }
 
-  onSubmit() {
+  async onSubmit() {
     this.firstname = this.staffEditForm.get('firstname').value.trim();
     this.lastname = this.staffEditForm.get('lastname').value.trim();
     this.email = this.staffEditForm.get('email').value.trim();
     this.phone = this.staffEditForm.get('phone').value.trim();
+    this.newpassword = this.staffEditForm.get('newpassword').value.trim();
+    this.confpassword = this.staffEditForm.get('confpassword').value.trim();
 
     this.role = this.temp_role.join(',');
 
-    if(this.staff_id == "" || this.staff_id == null || this.firstname == "" || 
-    this.lastname == "" || this.email == "" || this.phone == "" || 
-    this.role == "" || this.role == null){
-      alert('Enter full credentials!');
+    if(this.staff_id == "" || this.staff_id == null || this.firstname == "" || this.lastname == "" || this.email == "" || this.phone == "" || 
+    this.role == "" || this.role == null) {
+      
+      const alert = await this.alertCtrl.create({
+        header: 'Error!',
+        message: 'Enter full credentials!',
+        buttons: ['OK']
+      });
+      alert.present();
+
+    } else if(this.newpassword != "" && this.newpassword != this.confpassword) {
+
+      const alert = await this.alertCtrl.create({
+        header: 'Error!',
+        message: 'New password not matched!',
+        buttons: ['OK']
+      });
+      alert.present();
+
     } else {
 
       let sendData = {
@@ -71,22 +93,36 @@ export class StaffeditComponent implements OnInit {
         last_name: this.lastname,
         email: this.email,
         phone: this.phone,
-        role: this.role
+        role: this.role,
+        newpassword: this.newpassword
       }
-
       //console.log(sendData);
+
       this.data.staffEdit(sendData).subscribe(
         async res => {  
           if(res.status == true) {
             console.log(res);
-            this.router.navigate(['/staffs']); 
+            //this.router.navigate(['/staffs']); 
+            this.staffEditForm.patchValue({
+              newpassword: "",
+              confpassword: ""
+            });
+
+            const toast = await this.toastController.create({
+              message: 'Updated successfully.',
+              color: "dark",
+              position: "bottom",
+              duration: 2000
+            });
+            toast.present(); 
+
           } else {
             const alert = await this.alertCtrl.create({
               header: 'Error!',
               message: res.message,
               buttons: ['OK']
-              });
-              alert.present();
+            });
+            alert.present();
           }          
       });
     }
@@ -103,17 +139,17 @@ export class StaffeditComponent implements OnInit {
           this.staff = res.data;
 
           this.staffEditForm.patchValue({
-            firstname:res.data.first_name,
-            lastname:res.data.last_name,
-            email:res.data.email,
-            phone:res.data.phone,
-            //role:res.data.role
+            firstname: res.data.first_name,
+            lastname: res.data.last_name,
+            email: res.data.email,
+            phone: res.data.phone,
+            newpassword: "",
+            confpassword: ""
           });
 
           this.showRole(res.data.role);
         } else {
           this.staff = res.message;
-          //console.log("No response");
         }
       });
   }
