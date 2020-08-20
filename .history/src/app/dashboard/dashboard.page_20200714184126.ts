@@ -57,7 +57,7 @@ export class DashboardPage implements OnInit {
   }
 
   movetocustomerlist() {
-    this.router.navigate(['/customer-list']);
+    this.router.navigate(['/staffs']);
   }
 
 

@@ -33,8 +33,6 @@ import { OrdersComponent } from './orders/orders.component';
 import { OrderdetailsComponent } from './orderdetails/orderdetails.component';
 import { DatePicker } from '@ionic-native/date-picker/ngx';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
-import { CustomerListComponent } from './customer-list/customer-list.component';
-import { CustomerDetailsComponent } from './customer-details/customer-details.component';
 
 @NgModule({
   declarations: [
@@ -56,9 +54,7 @@ import { CustomerDetailsComponent } from './customer-details/customer-details.co
     AddstaffComponent,
     OrdersComponent,
     OrderdetailsComponent,
-    ResetPasswordComponent,
-    CustomerListComponent,
-    CustomerDetailsComponent
+    ResetPasswordComponent
   ],
   entryComponents: [],
   imports: [

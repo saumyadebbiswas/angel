@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar class="my-toolbar">
+    <ion-buttons slot="start">
+      <ion-menu-button class="manu-bar"></ion-menu-button>
+    </ion-buttons>
+    <ion-title color="light">
+      Staffs
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<div class="container">
+  <div *ngFor="let staff of customers">
+    <div class="row product-box">
+      <div class="col-1"></div>
+      
+      <div class="col-8 product-description" (click)="moveStaffEdit(staff.id)">
+        <h4>{{staff.first_name}} {{staff.last_name}}</h4>
+        <p><i class="fa fa-envelope" aria-hidden="true"></i> {{staff.email}}</p>
+        <p><i class="fa fa-phone" aria-hidden="true"></i> {{staff.phone}}</p>
+        <p>
+          <i class="fa fa-user" aria-hidden="true"></i>
+          <span *ngFor="let role of staff.role.split(',')">
+            <span *ngIf=" role == '0'" > Master Admin, </span>
+            <span *ngIf=" role == '1'" > Product Manager, </span>
+            <span *ngIf=" role == '2'" > Order Manager, </span>
+            <span *ngIf=" role == '3'" > Marketing Executive, </span>
+          </span>
+        </p>
+      </div>
+
+      <div class="col-3 detail-btn" (click)="moveStaffEdit(staff.id)">
+        <span>Details</span>
+      </div>
+
+    </div>
+  </div>
+
+  <span class="add-btn" (click)="moveStaffAdd()"><span>+</span></span>
+</div>
+</ion-content>
+

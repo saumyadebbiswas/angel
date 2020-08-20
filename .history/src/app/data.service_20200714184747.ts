@@ -76,13 +76,8 @@ export class DataService {
   staffList(): Observable<any> {
     return this.http.get<any>('http://phpstack-304562-945735.cloudwaysapps.com/crm/api/authentication/allstaffs', {headers: this.requestHeader})
   }
-
-  customerList(): Observable<any> {
-    return this.http.get<any>('http://phpstack-304562-945735.cloudwaysapps.com/crm/api/customer/allcustomers', {headers: this.requestHeader})
-  }
-
-  customerDetails(id): Observable<any> {
-    return this.http.get<any>('http://phpstack-304562-945735.cloudwaysapps.com/crm/api/customer/details/'+id, {headers: this.requestHeader})
+  staffList(): Observable<any> {
+    return this.http.get<any>('http://phpstack-304562-945735.cloudwaysapps.com/crm/api/authentication/allstaffs', {headers: this.requestHeader})
   }
 
   staffDetails(input:any): Observable<any> {
@@ -116,6 +111,4 @@ export class DataService {
   resetPassword(input:any): Observable<any> {
     return this.http.put<any>('http://phpstack-304562-945735.cloudwaysapps.com/crm/api/authentication/reset-password', input, {headers: this.requestHeader})
   }
-
-  //nick von
 }

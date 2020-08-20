@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar class="my-toolbar">
+    <ion-buttons slot="start">
+      <ion-menu-button class="manu-bar"></ion-menu-button>
+    </ion-buttons>
+    <ion-title color="light">
+      Customers
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<div class="container">
+  <div *ngFor="let staff of customers">
+    <div class="row product-box">
+      <div class="col-1"></div>
+      
+      <div class="col-8 product-description" (click)="moveStaffEdit(staff.cust_id)">
+        <h4>{{staff.cust_name}}</h4>
+        <p><i class="fa fa-envelope" aria-hidden="true"></i> {{staff.cust_email}}</p>
+        <p><i class="fa fa-phone" aria-hidden="true"></i> {{staff.cust_phone}}</p>
+      </div>
+
+      <div class="col-3 detail-btn" (click)="moveStaffEdit(staff.cust_id)">
+        <span>Details</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- <span class="add-btn" (click)="moveStaffAdd()"><span>+</span></span> -->
+</div>
+</ion-content>
+

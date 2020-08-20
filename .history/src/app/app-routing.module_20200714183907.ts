@@ -18,8 +18,6 @@ import { AddstaffComponent } from './addstaff/addstaff.component';
 import { OrdersComponent } from './orders/orders.component';
 import { OrderdetailsComponent } from './orderdetails/orderdetails.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
-import { CustomerListComponent } from './customer-list/customer-list.component';
-import { CustomerDetailsComponent } from './customer-details/customer-details.component';
 
 const routes: Routes = [
   {
@@ -45,10 +43,9 @@ const routes: Routes = [
   { path: 'editprofile', component: EditprofileComponent },
   { path: 'orders', component: OrdersComponent },
   { path: 'orders/:id', component: OrderdetailsComponent },
-  { path: 'reset-password', component: ResetPasswordComponent },
-  { path: 'reset-password', component: ResetPasswordComponent },
-  { path: 'customer-list', component: CustomerListComponent },
-  { path: 'customer-details/:id', component: CustomerDetailsComponent },
+  { path: 'reset-password', component: ResetPasswordComponent }
+  { path: 'reset-password', component: ResetPasswordComponent }
+  { path: 'customer-list', component: ResetPasswordComponent }
 ];
 
 @NgModule({

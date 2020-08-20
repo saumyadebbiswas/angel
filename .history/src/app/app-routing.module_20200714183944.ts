@@ -45,10 +45,10 @@ const routes: Routes = [
   { path: 'editprofile', component: EditprofileComponent },
   { path: 'orders', component: OrdersComponent },
   { path: 'orders/:id', component: OrderdetailsComponent },
-  { path: 'reset-password', component: ResetPasswordComponent },
-  { path: 'reset-password', component: ResetPasswordComponent },
-  { path: 'customer-list', component: CustomerListComponent },
-  { path: 'customer-details/:id', component: CustomerDetailsComponent },
+  { path: 'reset-password', component: ResetPasswordComponent }
+  { path: 'reset-password', component: ResetPasswordComponent }
+  { path: 'customer-list', component: CustomerListComponent }
+  { path: 'customer-details/:id', component: CustomerDetailsComponent }
 ];
 
 @NgModule({
